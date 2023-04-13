@@ -1,0 +1,51 @@
+1. Analise o código e tente identificar eventuais erros.
+No código c5 aparentemente o único erro é a fato de não liberar a memória no final do arquivo. Além disso o arquivo
+aparenta estar mal organizado, visto que o número randômico é definido após percorrer o vetor, 
+mas acredito que isso só carateriza uma má prática. 
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+No valgrind é visível que a memória não é completamente desalocada e é confirmado um erro.
+
+==2994== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==2994== Command: ./a.out
+==2994==
+intArray[187]: 187
+==2994== 
+==2994== HEAP SUMMARY:
+==2994==     in use at exit: 4,000 bytes in 1 blocks
+==2994==   total heap usage: 2 allocs, 1 frees, 5,024 bytes allocated
+==2994==
+==2994== 4,000 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==2994==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==2994==    by 0x109208: main (c5.c:13)
+==2994==
+==2994== LEAK SUMMARY:
+==2994==    definitely lost: 4,000 bytes in 1 blocks
+==2994==    indirectly lost: 0 bytes in 0 blocks
+==2994==      possibly lost: 0 bytes in 0 blocks
+==2994==    still reachable: 0 bytes in 0 blocks
+==2994==         suppressed: 0 bytes in 0 blocks
+==2994==
+==2994== For lists of detected and suppressed errors, rerun with: -s
+==2994== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Para corrigir, o foi adicionado o comando free(intArray) no final do código, além disso adicionei 
+o gerador de números randômicos logo abaixo da declaração da main, para que o código ficasse mais legível.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Com o valgrin é bem visível a liberação de memória que é feita após a correção.
+
+==3018== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3018== Command: ./a.out
+==3018==
+intArray[301]: 301
+==3018== 
+==3018== HEAP SUMMARY:
+==3018==     in use at exit: 0 bytes in 0 blocks
+==3018==   total heap usage: 2 allocs, 2 frees, 5,024 bytes allocated
+==3018==
+==3018== All heap blocks were freed -- no leaks are possible
+==3018==
+==3018== For lists of detected and suppressed errors, rerun with: -s
+==3018== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

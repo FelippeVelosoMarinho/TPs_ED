@@ -1,0 +1,51 @@
+1. Analise o código e tente identificar eventuais erros.
+O erro no código c14 está no fato da variável fact ser inicializada sem nenhuma atribuição de valor, sendo assim ela é
+inicializada com um lixo de memória.
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+Utilizando o valgrind é visível que o retorno da função corresponde a um valor completamente errado.
+
+////////// Valgrind /////////
+Factorial 2 = 62
+==648== 
+==648== HEAP SUMMARY:
+==648==     in use at exit: 0 bytes in 0 blocks
+==648==   total heap usage: 2 allocs, 2 frees, 2,048 bytes allocated
+
+Utilizando o GDB podemos printar o valor da variável ao inicializar pra ver qual lixo de memória está sendo atribuido a ela:
+
+//////// GDB ////////
+(gdb) run
+Starting program: /mnt/d/Códigos/C/Pratica3_ED/Felippe_Marinho_2021072260/a.out 
+
+Breakpoint 1, main () at c14.c:3
+3       int main(void) {
+(gdb) print fact
+$1 = 32767
+(gdb)
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Para corrigir é necessário inicializar a variável fact com o valor 1.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Usando o valgrind é possível ver que o resultado agora foi correto:
+
+//////// Valgrind ///////
+==688==
+Positive integer:3
+Factorial 3 = 6
+==688== 
+==688== HEAP SUMMARY:
+==688==     in use at exit: 0 bytes in 0 blocks
+==688==   total heap usage: 2 allocs, 2 frees, 2,048 bytes allocated
+==688==
+==688== All heap blocks were freed -- no leaks are possible
+
+Printando a variável fact pelo GDB:
+
+/////// GDB ///////
+(gdb) next
+7         printf("Positive integer:");
+(gdb) print fact
+$2 = 1
+(gdb)

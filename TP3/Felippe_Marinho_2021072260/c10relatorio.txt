@@ -1,0 +1,64 @@
+1. Analise o código e tente identificar eventuais erros.
+O código apresenta um loop infinito de alocação de memória.
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+Usando o valgrind podemos perceber os erros indicados:
+
+==3644== Process terminating with default action of signal 2 (SIGINT)
+==3644==    at 0x4992075: write (write.c:26)
+==3644==    by 0x4912E8C: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1181)
+==3644==    by 0x4914950: new_do_write (fileops.c:449)
+==3644==    by 0x4914950: _IO_new_do_write (fileops.c:426)
+==3644==    by 0x4914950: _IO_do_write@@GLIBC_2.2.5 (fileops.c:423)
+==3644==    by 0x49136B4: _IO_new_file_xsputn (fileops.c:1244)
+==3644==    by 0x49136B4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1197)
+==3644==    by 0x48FAFE5: __vfprintf_internal (vfprintf-internal.c:1719)
+==3644==    by 0x48E5D3E: printf (printf.c:33)
+==3644==    by 0x10919A: main (c10.c:10)
+89221056
+==3644==
+==3644== HEAP SUMMARY:
+==3644==     in use at exit: 7,419,776 bytes in 57,967 blocks
+==3644==   total heap usage: 57,968 allocs, 1 frees, 7,420,800 bytes allocated
+==3644==
+==3644== 7,419,648 bytes in 57,966 blocks are definitely lost in loss record 2 of 2
+==3644==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3644==    by 0x10917E: main (c10.c:9)
+==3644==
+==3644== LEAK SUMMARY:
+==3644==    definitely lost: 7,419,648 bytes in 57,966 blocks
+==3644==    indirectly lost: 0 bytes in 0 blocks
+==3644==      possibly lost: 0 bytes in 0 blocks
+==3644==    still reachable: 128 bytes in 1 blocks
+==3644==         suppressed: 0 bytes in 0 blocks
+==3644== Reachable blocks (those to which a pointer was found) are not shown.
+==3644== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==3644==
+==3644== For lists of detected and suppressed errors, rerun with: -s
+==3644== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Para corrigir os erros é só colocar para liberar a memória durante o loop e definir um loop que tenha condição de parada.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Com o valgrind podemos perceber que a correção indicada no tópico 3, foi bem sucedida visto que é printado as memórias
+alocadas de acordo com a condição de parada e logo após a memória é liberada.
+
+///////// Valgrind após a correção //////////
+78090304
+78091584
+78091776
+78091968
+78092160
+78092352
+78092544
+78092736
+78092928
+78093120
+==3689==
+==3689== HEAP SUMMARY:
+==3689==     in use at exit: 0 bytes in 0 blocks
+==3689==   total heap usage: 11 allocs, 11 frees, 2,304 bytes allocated
+==3689==
+==3689== All heap blocks were freed -- no leaks are possible
+==3689==
+==3689== For lists of detected and suppressed errors, rerun with: -s

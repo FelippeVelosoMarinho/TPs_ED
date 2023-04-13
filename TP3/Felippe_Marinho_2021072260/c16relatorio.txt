@@ -1,0 +1,38 @@
+1. Analise o código e tente identificar eventuais erros.
+O erro no código está puramente no motivo da variável b está recebendo o valor zero em sua atrbuição, sendo assim o 
+programa finaliza abruptamente.
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+Utilizando o valgrind é relatado o erro acima:
+
+/////// Valgrind ////////
+==472== Process terminating with default action of signal 8 (SIGFPE)
+==472==  Integer divide by zero at address 0x1002D484F7
+==472==    at 0x10913B: actual_calc (c16.c:6)
+==472==    by 0x109170: calc (c16.c:15)
+==472==    by 0x109189: main (c16.c:20)
+==472== 
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+O código pode ser resolvido colocando uma condicional na função actual_calc, que possa tratar os valores da divisão.
+exp: 
+  if(b == 0){
+    return -1;
+  } 
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Reutilizando o valgrind, é notado que o código inicializa e se encerra com sucesso.
+
+//////// Valgrind ////////
+==478== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==478== Command: ./a.out
+==478==
+==478== 
+==478== HEAP SUMMARY:
+==478==     in use at exit: 0 bytes in 0 blocks
+==478==   total heap usage: 0 allocs, 0 frees, 0 bytes allocated
+==478==
+==478== All heap blocks were freed -- no leaks are possible
+==478==
+==478== For lists of detected and suppressed errors, rerun with: -s
+==478== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

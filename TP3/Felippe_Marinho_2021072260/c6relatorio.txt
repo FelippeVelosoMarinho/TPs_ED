@@ -1,0 +1,60 @@
+1. Analise o código e tente identificar eventuais erros.
+O erro no código é indicado pelo comentário porque embora o ponteiro dPtr seja atualizado com o endereço da memória realocado,
+o ponteiro data da struct list, não foi atualizada. 
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+Executando o valgrind é visível que há um problema indicado como operação inválida (free() / delete / delete[] / realloc())
+
+==3461== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3461== Command: ./a.out
+==3461==
+==3461== Invalid free() / delete / delete[] / realloc()
+==3461==    at 0x483CA3F: free (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3461==    by 0x109215: main (c6.c:21)
+==3461==  Address 0x4a79090 is 0 bytes inside a block of size 40 free'd
+==3461==    at 0x483DFAF: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3461==    by 0x1091B4: resizeArray (c6.c:12)
+==3461==    by 0x109202: main (c6.c:19)
+==3461==  Block was alloc'd at
+==3461==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3461==    by 0x1091EC: main (c6.c:18)
+==3461== 
+==3461== HEAP SUMMARY:
+==3461==     in use at exit: 60 bytes in 1 blocks
+==3461==   total heap usage: 3 allocs, 3 frees, 116 bytes allocated
+==3461==
+==3461== 60 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==3461==    at 0x483DFAF: realloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3461==    by 0x1091B4: resizeArray (c6.c:12)
+==3461==    by 0x109202: main (c6.c:19)
+==3461==
+==3461== LEAK SUMMARY:
+==3461==    definitely lost: 60 bytes in 1 blocks
+==3461==    indirectly lost: 0 bytes in 0 blocks
+==3461==      possibly lost: 0 bytes in 0 blocks
+==3461==    still reachable: 0 bytes in 0 blocks
+==3461==         suppressed: 0 bytes in 0 blocks
+==3461==
+==3461== For lists of detected and suppressed errors, rerun with: -s
+==3461== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Para corrigir atualizamos o ponteiro data com o novo endereço de memória retornado pela função realloc.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Com as ações tomadas no tópico 3, os erros são corrigidos como mostra a execução do valgrind abaixo:
+
+==3479== Memcheck, a memory error detector
+==3479== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3479== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==3479== Command: ./a.out
+==3479==
+==3479== 
+==3479== HEAP SUMMARY:
+==3479==     in use at exit: 0 bytes in 0 blocks
+==3479==   total heap usage: 3 allocs, 3 frees, 116 bytes allocated
+==3479==
+==3479== All heap blocks were freed -- no leaks are possible
+==3479==
+==3479== For lists of detected and suppressed errors, rerun with: -s
+==3479== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

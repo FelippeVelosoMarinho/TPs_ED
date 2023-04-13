@@ -1,0 +1,40 @@
+1. Analise o código e tente identificar eventuais erros.
+O erro no código é porque o loop faz com que a função inc não funcione, visto que em todos os loops
+é sempre atribuido o valor 1.
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+Utilizando o script do GDB é visível o relato do tópico 1.
+
+/////// GDB ////////
+(gdb) next 
+9         for(int i=1; i < 5; i++) {
+(gdb) print i
+$2 = 1
+(gdb) next
+10           int a = 1;
+(gdb) print a
+$3 = 2
+(gdb) next
+11           a = inc(a);
+(gdb) print a
+$4 = 1
+(gdb)
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Para corrigir o código, simplesmente tiramos a declaração da variável a de dentro do loop.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Utilizando o GDB vemos que a função de inc faz o incremento corretamente:
+
+/////// GDB /////////
+(gdb) next
+10        for(int i=1; i < 5; i++) {
+(gdb) print a
+$2 = 1
+(gdb) next
+11           a = inc(a);
+(gdb) next 
+10        for(int i=1; i < 5; i++) {
+(gdb) print a
+$3 = 2
+(gdb)

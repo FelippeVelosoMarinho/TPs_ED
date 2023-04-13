@@ -1,0 +1,36 @@
+1. Analise o código e tente identificar eventuais erros.
+Novamente o erro é devido a alocação de 10 espaços de memória porém logo após há uma tentativa de acessar uma posição que não 
+foi alocada x[10].
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+Usando o valgrind podemos perceber os erros indicados:
+
+==3614== Invalid write of size 4
+==3614==    at 0x10916B: f (c9.c:6)
+==3614==    by 0x109180: main (c9.c:11)
+==3614==  Address 0x4a79068 is 0 bytes after a block of size 40 alloc'd
+==3614==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3614==    by 0x10915E: f (c9.c:5)
+==3614==    by 0x109180: main (c9.c:11)
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Alocando 11 inteiros, o problema é resolvido.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Com o valgrind podemos perceber que a correção indicada no tópico 3, foi bem sucedida.
+
+==3632== HEAP SUMMARY:
+==3632==     in use at exit: 44 bytes in 1 blocks
+==3632==   total heap usage: 1 allocs, 0 frees, 44 bytes allocated
+==3632==
+==3632== 44 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==3632==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3632==    by 0x10915E: f (c9.c:5)
+==3632==    by 0x109180: main (c9.c:11)
+==3632==
+==3632== LEAK SUMMARY:
+==3632==    definitely lost: 44 bytes in 1 blocks
+==3632==    indirectly lost: 0 bytes in 0 blocks
+==3632==      possibly lost: 0 bytes in 0 blocks
+==3632==    still reachable: 0 bytes in 0 blocks
+==3632==         suppressed: 0 bytes in 0 blocks

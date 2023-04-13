@@ -1,0 +1,28 @@
+1. Analise o código e tente identificar eventuais erros.
+O código analisado tenta copiar 27 bytes da memória alocada no ponteiro destination e 26 bytes para o ponteiro source. 
+Dessa forma a última iteração no segundo loop tenta acessar uma posição de memória que não foi alocada.
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+No valgrind podemos confirmar as suspeitas o erro demonstrado abaixo:
+
+==3584== Invalid read of size 1
+==3584==    at 0x1091D2: main (c8.c:9)
+==3584==  Address 0x4a790ba is 0 bytes after a block of size 26 alloc'd
+==3584==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3584==    by 0x1091B1: main (c8.c:6)
+==3584==
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Para corrigir o erro foi alterado a limitação do loop para que haja apenas 26 iterações.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Por último os resultados do valgrind confirmam que a correção resolveu os erros.
+
+==3602== HEAP SUMMARY:
+==3602==     in use at exit: 0 bytes in 0 blocks
+==3602==   total heap usage: 2 allocs, 2 frees, 53 bytes allocated
+==3602==
+==3602== All heap blocks were freed -- no leaks are possible
+==3602==
+==3602== For lists of detected and suppressed errors, rerun with: -s
+==3602== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

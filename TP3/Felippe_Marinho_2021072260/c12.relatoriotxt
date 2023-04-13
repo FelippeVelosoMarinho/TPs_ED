@@ -1,0 +1,25 @@
+1. Analise o código e tente identificar eventuais erros.
+O erro no código abaixo é devido ao código não declarar um valor pra variável x e logo depois coloca ela como uma condição de if.
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+Utilizando o valgrind é notado o erro:
+//////// Valgrind /////////
+==530== Conditional jump or move depends on uninitialised value(s)
+==530==    at 0x109159: main (c12.c:6)
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Para corrigir o código atribuimos o valor zero ao declarar a variável x.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Realizado o passo descrito no tópico 3 é visível a diferença entre a execução do valgrind anntes e agora.
+
+/////////// Valgrind ///////////
+==544== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==544== Command: ./a.out
+==544==
+X is zero==544== 
+==544== HEAP SUMMARY:
+==544==     in use at exit: 0 bytes in 0 blocks
+==544==   total heap usage: 1 allocs, 1 frees, 1,024 bytes allocated
+==544==
+==544== All heap blocks were freed -- no leaks are possible

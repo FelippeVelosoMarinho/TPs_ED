@@ -1,0 +1,40 @@
+1. Analise o código e tente identificar eventuais erros.
+No código a memória alocada pelo ponteiro msg não é liberada ao final do programa. Além disso é armazenado espaço para uma string
+de 8 caracteres porém Holberton possui 9 caracteres somando com o caractere nulo '/0'.
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+No valgrind é perceptível que o erro de acessar espaços de memória não alocados:
+
+==475== Invalid write of size 2
+==475==    at 0x1091B4: main (c11.c:9)
+==475==  Address 0x4a79048 is 0 bytes after a block of size 8 alloc'd
+==475==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==475==    by 0x10919E: main (c11.c:8)
+==475== 
+==475== Invalid read of size 1
+==475==    at 0x483EF54: strlen (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==475==    by 0x48FCD14: __vfprintf_internal (vfprintf-internal.c:1688)
+==475==    by 0x48E5D3E: printf (printf.c:33)
+==475==    by 0x1091DF: main (c11.c:11)
+==475==  Address 0x4a79048 is 0 bytes after a block of size 8 alloc'd
+==475==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==475==    by 0x10919E: main (c11.c:8)
+
+Além disso a memória não é liberada, mostrando abaixo:
+==475== HEAP SUMMARY:
+==475==     in use at exit: 8 bytes in 1 blocks
+==475==   total heap usage: 2 allocs, 1 frees, 1,032 bytes allocated
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Colocando o comando free(msg) após realizar as operações e alocando espaço suficiente para um string de 10 caracteres, o código é corrigido.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Utilizando o valgrind é visível que o código foi corrigido:
+
+///////// Valgrind ///////////
+==487==
+487, Rolberton
+==487==
+==487== HEAP SUMMARY:
+==487==     in use at exit: 0 bytes in 0 blocks
+==487==   total heap usage: 2 allocs, 2 frees, 1,034 bytes allocated

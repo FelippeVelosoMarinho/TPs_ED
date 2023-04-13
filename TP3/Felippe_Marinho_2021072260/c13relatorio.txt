@@ -1,0 +1,51 @@
+1. Analise o código e tente identificar eventuais erros.
+Primeiramente, tive que pesquisar ao certo quais poderiam ser os erros provocados com a sobrescrita do ponteiro p de 19 pra 
+12 bytes. Pelo jeito o ponteiro que foi apontado antes é perdido e vaza memória, sendo impossível recuperá-lo.
+
+2. Utilizando as ferramentas, confirme a sua avaliação ou identifique problemas.
+Utilizando o valgrind é possível verificar que há uma perda de 35 bytes em 2 blocos, evidenciando o problema notado 
+no tópico 1.
+
+///////////// Valgrind //////////////
+==612== HEAP SUMMARY:
+==612==     in use at exit: 35 bytes in 2 blocks
+==612==   total heap usage: 3 allocs, 1 frees, 47 bytes allocated
+==612==
+==612== 16 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==612==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==612==    by 0x1091A6: main (c13.c:11)
+==612==
+==612== 19 bytes in 1 blocks are definitely lost in loss record 2 of 2
+==612==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==612==    by 0x10917E: main (c13.c:8)
+==612==
+==612== LEAK SUMMARY:
+==612==    definitely lost: 35 bytes in 2 blocks
+==612==    indirectly lost: 0 bytes in 0 blocks
+==612==      possibly lost: 0 bytes in 0 blocks
+==612==    still reachable: 0 bytes in 0 blocks
+==612==         suppressed: 0 bytes in 0 blocks
+==612==
+==612== For lists of detected and suppressed errors, rerun with: -s
+==612== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+3. Corrija o código, removendo o(s) erro(s) identificado(s).
+Para corrigir o erro eu simplesmente comentei a sobrescrita da alolcação de memória de 12 bytes do ponteiro p e liberei a 
+memória no final do código.
+
+4. Utilizando novamente as ferramentas, verifique a remoção do erro.
+Usando o valgrind novamente, é notado que a correção indicada no tópico 3 foi bem sucedida.
+
+/////////  Valgrind /////////
+==630== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==630== Command: ./a.out
+==630==
+==630== 
+==630== HEAP SUMMARY:
+==630==     in use at exit: 0 bytes in 0 blocks
+==630==   total heap usage: 2 allocs, 2 frees, 35 bytes allocated
+==630==
+==630== All heap blocks were freed -- no leaks are possible
+==630==
+==630== For lists of detected and suppressed errors, rerun with: -s
+==630== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
