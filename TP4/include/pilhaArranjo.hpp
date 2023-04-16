@@ -22,6 +22,7 @@ public:
     void limpapilha();
     int gerarNumeroAleatorio(int minimo, int maximo);
     void operacoes();
+    void pilhavazia();
 
 private:
     /*int topo;*/

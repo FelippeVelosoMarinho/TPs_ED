@@ -68,6 +68,16 @@ void PilhaArranjo::limpapilha()
               << std::endl;
 }
 
+void PilhaArranjo::pilhavazia()
+{
+    if (Pilha.GetTamanho() == 0)
+    {
+        std::cout << "A pilha esta vazia!" << std::endl;
+        return;
+    }
+    std::cout << "A pilha nao esta vazia!" << std::endl;
+}
+
 void PilhaArranjo::operacoes()
 {
     int num = 0;
@@ -76,10 +86,10 @@ void PilhaArranjo::operacoes()
     empilha(gerarNumeroAleatorio(0, 9));
     empilha(gerarNumeroAleatorio(0, 9));
     empilha(gerarNumeroAleatorio(0, 9));
-    while (contador < 25)
+    while (contador < 30)
     {
         std::cout << "----- Operacao " << contador + 1 << " -----" << std::endl;
-        switch (gerarNumeroAleatorio(1, 2))
+        switch (gerarNumeroAleatorio(1, 3))
         {
         case 1:
             num = gerarNumeroAleatorio(0, 9);
@@ -87,6 +97,9 @@ void PilhaArranjo::operacoes()
             break;
         case 2:
             desempilha();
+            break;
+        case 3:
+            pilhavazia();
             break;
         }
         contador++;
