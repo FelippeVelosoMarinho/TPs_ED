@@ -1,3 +1,13 @@
+//---------------------------------------------------------------------
+// Arquivo      : pilhaPai.hpp
+// Conteudo     : Classe pai de pilha
+// Autor        : Felippe Veloso Marinho. (felippe.veloso15@gmail.com)
+// Historico    : 30/04/2023 - arquivo criado
+//---------------------------------------------------------------------
+
+#ifndef _PILHA_PAI_HPP_
+#define _PILHA_PAI_HPP_
+
 #include <iostream>
 
 class PilhaPai
@@ -13,3 +23,5 @@ public:
 protected:
     int tamanho;
 };
+
+#endif

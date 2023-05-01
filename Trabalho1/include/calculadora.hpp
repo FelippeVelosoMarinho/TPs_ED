@@ -1,9 +1,17 @@
+//---------------------------------------------------------------------
+// Arquivo      : calculadora.hpp
+// Conteudo     : Classe calculadora
+// Autor        : Felippe Veloso Marinho. (felippe.veloso15@gmail.com)
+// Historico    : 16/04/2023 - arquivo criado
+//---------------------------------------------------------------------
+
 #ifndef _CALCULADORA_HPP_
 #define _CALCULADORA_HPP_
 
 #include <iostream>
 #include <cstring>
 #include <fstream>
+#include <cmath>
 #include "pilha.hpp"
 
 using namespace std;
@@ -13,6 +21,7 @@ using namespace std;
 class Calculadora
 {
 public:
+    // Construtor e destrutor
     Calculadora();
     ~Calculadora();
 
@@ -39,7 +48,6 @@ public:
 
     // Função para resolver a expressão utilizando as funções acima
     void resolveExpressao(const char* filename, char expression[], int expression_type, int exp_conv);
-    
 
 private:
     char operacao[MAXTAM];
