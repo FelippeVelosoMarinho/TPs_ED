@@ -9,6 +9,7 @@
 #define _PILHA_HPP_
 
 #include <iostream>
+#include "exceptions.hpp"
 #include "pilhaPai.hpp"
 
 #define MAXTAM 1000
@@ -22,6 +23,7 @@ public:
     void Empilha(float item);
     float Desempilha();
     void Limpa();
+    void ImprimePilha(Pilha p);    
 
     // Função que retorna o topo da pilha
     float Topo() { return itens[topo]; };

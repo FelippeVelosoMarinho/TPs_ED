@@ -26,7 +26,7 @@ $(TARGET): $(OBJECTS)
 
 # Regra para compilar e executar o programa
 run: all
-	$(TARGET)
+	$(TARGET) "./enters/entdouble.s1.n5.i.in"
 
 # Limpeza dos arquivos objetos e do executável
 clean:

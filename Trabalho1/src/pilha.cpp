@@ -10,7 +10,7 @@
 /**
  * @brief Construtor da classe Pilha
  *
-*/
+ */
 Pilha::Pilha() : PilhaPai()
 {
     topo = -1;
@@ -19,7 +19,7 @@ Pilha::Pilha() : PilhaPai()
 /**
  * @brief Destrutor da classe Pilha
  *
-*/
+ */
 Pilha::~Pilha()
 {
 }
@@ -28,11 +28,11 @@ Pilha::~Pilha()
  * @brief Função para empilhar um item na pilha
  *
  * @param item
-*/
+ */
 void Pilha::Empilha(float item)
 {
     if (tamanho == MAXTAM)
-        throw "A pilha está cheia!";
+        throw FullStackException();
     topo++;
     itens[topo] = item;
     tamanho++;
@@ -42,12 +42,12 @@ void Pilha::Empilha(float item)
  * @brief Função para desempilhar um item da pilha
  *
  * @return float
-*/
+ */
 float Pilha::Desempilha()
 {
     float aux;
     if (tamanho == 0)
-        throw "A pilha está vazia!";
+        throw EmptyStackException();
     aux = itens[topo];
     topo--;
     tamanho--;
@@ -55,11 +55,24 @@ float Pilha::Desempilha()
     ;
 };
 
+/**
+ * @brief Função para imprimir a pilha
+ *
+ * @param p
+ */
+void ImprimePilha(Pilha p)
+{
+    while (!p.Vazia())
+    {
+        std::cout << p.Topo() << std::endl;
+        p.Desempilha();
+    }
+}
 
 /**
  * @brief Função para limpar a pilha
  *
-*/
+ */
 void Pilha::Limpa()
 {
     topo = -1;
