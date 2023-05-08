@@ -24,9 +24,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-# Regra para compilar e executar o programa
+# Regra para compilar e executar o programa, coloque o caminho até o arquivo de entrada 
+# entre aspas após o comando. Exemplo: $(TARGET) "c:/Users/usuario/Desktop/entradas/entdouble.s1.n5.i.in"
 run: all
-	$(TARGET) "./enters/entdouble.s1.n5.i.in"
+	$(TARGET) "./enters/entdouble.s2.n5.p.in"
 
 # Limpeza dos arquivos objetos e do executável
 clean:

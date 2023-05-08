@@ -454,8 +454,7 @@ float Calculadora::calculaPos(char *expr)
 {
     if (!verificaExpressaoPos(expr))
     {
-        std::cout << "Expressão inválida pos!" << std::endl;
-        throw "Expressão inválida pos!";
+        throw InvalidPostfixException();
     }
     else
     {

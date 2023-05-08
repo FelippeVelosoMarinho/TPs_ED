@@ -15,7 +15,6 @@
 #include "exceptions.hpp"
 #include "pilha.hpp"
 #include "pilhaStr.hpp"
-#include "arvore.hpp"
 
 using namespace std;
 
@@ -48,7 +47,6 @@ public:
 
     // Funções para calcular a expressão
     float calculaPos(char posfixa[]);
-    // float calculaInf(char infixa[]);
 
     // Função para resolver a expressão utilizando as funções acima
     void resolveExpressao(const char *filename, char expression[], int expression_type, int exp_conv);
