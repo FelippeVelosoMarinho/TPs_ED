@@ -10,6 +10,20 @@
 
 #include <iostream>
 
+class PilhaPaiStr
+{
+public:
+    PilhaPaiStr() { tamanho = 0; };
+    int GetTamanho() { return tamanho; };
+    bool Vazia() { return tamanho == 0; };
+    virtual void EmpilhaStr(char *item) = 0;
+    virtual char* DesempilhaStr() = 0;
+    virtual void LimpaStr() = 0;
+
+protected:
+    int tamanho;
+};
+
 class PilhaPai
 {
 public:

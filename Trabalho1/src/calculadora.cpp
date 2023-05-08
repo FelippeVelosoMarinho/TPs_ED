@@ -379,122 +379,69 @@ char *Calculadora::converteInfToPos(char infixa[], char posfixa[])
     return posfixa;
 }
 
-Pilha Calculadora::convertePraPos(char infixa[])
-{
-    Pilha pilha_posfixa;
-    Pilha pilha_operadores;
-
-    for (int i = 0; infixa[i] != '\0'; i++)
-    {
-        char c = infixa[i];
-
-        if (c == '(')
-        {
-            pilha_operadores.Empilha(c);
-        }
-        else if (isdigit(c) || c == '.')
-        {
-            // Converte o caractere para um número float e empilha na pilha_posfixa
-            float num = atof(&infixa[i]);
-            pilha_posfixa.Empilha(num);
-
-            // Incrementa o índice para pular o número na próxima iteração
-            while (isdigit(infixa[i]) || infixa[i] == '.')
-            {
-                i++;
-            }
-            i--; // Decrementa para compensar a iteração do loop
-        }
-        else
-        {
-            if (c == '+' || c == '-')
-            {
-                while (!pilha_operadores.Vazia() && pilha_operadores.Topo() != '(')
-                {
-                    char op = pilha_operadores.Desempilha();
-                    pilha_posfixa.Empilha(op);
-                }
-                pilha_operadores.Empilha(c);
-            }
-            else if (c == '*' || c == '/')
-            {
-                while (!pilha_operadores.Vazia() && (pilha_operadores.Topo() == '*' || pilha_operadores.Topo() == '/'))
-                {
-                    char op = pilha_operadores.Desempilha();
-                    pilha_posfixa.Empilha(op);
-                }
-                pilha_operadores.Empilha(c);
-            }
-            else if (c == ')')
-            {
-                while (!pilha_operadores.Vazia() && pilha_operadores.Topo() != '(')
-                {
-                    char op = pilha_operadores.Desempilha();
-                    pilha_posfixa.Empilha(op);
-                }
-                if (pilha_operadores.Vazia())
-                {
-                    throw InvalidExpressionTypeException();
-                }
-                pilha_operadores.Desempilha(); // Remove o '(' da pilha
-            }
-        }
-    }
-
-    while (!pilha_operadores.Vazia())
-    {
-        char op = pilha_operadores.Desempilha();
-        if (op == '(')
-        {
-            throw InvalidExpressionTypeException();
-        }
-        pilha_posfixa.Empilha(op);
-    }
-
-    return pilha_posfixa;
-}
-
 /**
  * @brief Função para converter uma expressão posfixa para infixa
  *
  * @param posfixa Expressão posfixa
  * @return char* Expressão infixa
  */
-char *Calculadora::convertePostoInf(char posfixa[])
+char *Calculadora::convertePostoInf(char postfix[])
 {
-    Pilha p;
-    int tam = strlen(posfixa);
-    char c, op1, op2;
-    char *expressao = new char[2 * tam + 1];
-    int i = 0;
+    PilhaStr pilha;
+    char infixa[MAXTAM];
+    int tamanho = strlen(postfix);
 
-    for (int j = 0; j < tam; j++)
+    for (int i = 0; i < tamanho; i++)
     {
-        c = posfixa[j];
-        if (isOperand(c) || c == '.')
-        {
-            expressao[i++] = c;
-            expressao[i++] = ' '; // adiciona um espaço em branco após o operando
-            p.Empilha(c);
+        char c = postfix[i];
+
+        if (isspace(c))
+        { // ignorar espaços em branco
+            continue;
+        }
+        else if (isdigit(c) || c == '.')
+        { // se for um dígito ou um ponto decimal
+            char *start = postfix + i;
+            char *end;
+            double num = strtod(start, &end); // converter a substring em um número de ponto flutuante
+            int len = end - start;
+
+            char *op = new char[len + 1];
+            strncpy(op, start, len);
+            op[len] = '\0';
+
+            i += len - 1; // atualizar o índice i para o próximo caractere após o número
+            pilha.EmpilhaStr(op);
         }
         else
-        {
-            op2 = p.Desempilha();
-            op1 = p.Desempilha();
-            expressao[i++] = '(';
-            expressao[i++] = op1;
-            expressao[i++] = ' '; // adiciona um espaço em branco após o operando 1
-            expressao[i++] = c;
-            expressao[i++] = ' '; // adiciona um espaço em branco após o operador
-            expressao[i++] = op2;
-            expressao[i++] = ' '; // adiciona um espaço em branco após o operando 2
-            expressao[i++] = ')';
-            p.Empilha(expressao[i - 9]); // empilha a subexpressão criada
+        { // se for um operador
+            char *op2 = pilha.TopoStr();
+            pilha.DesempilhaStr();
+            char *op1 = pilha.TopoStr();
+            pilha.DesempilhaStr();
+
+            char exp[MAXTAM];
+            sprintf(exp, "( ( %s ) %c ( %s ) )", op1, c, op2);
+            delete[] op1;
+            delete[] op2;
+
+            char *novaExp = new char[strlen(exp) + 1];
+            strcpy(novaExp, exp);
+            pilha.EmpilhaStr(novaExp);
         }
     }
-    expressao[i] = '\0';
 
-    return expressao;
+    if (!pilha.Vazia())
+    {
+        char *exp = pilha.TopoStr();
+        strcpy(infixa, exp);
+        delete[] exp;
+    }
+
+    char *resultado = new char[strlen(infixa) + 1];
+    strcpy(resultado, infixa);
+
+    return resultado;
 }
 
 /**
@@ -567,72 +514,6 @@ float Calculadora::calculaPos(char *expr)
 }
 
 /**
- * @brief Função para calcular uma expressão infixa
- *
- * @param expr Expressão infixa
- * @return float Resultado da infixa
- */
-float Calculadora::calculaInf(char expr[])
-{
-    Pilha pilha;
-
-    // Monta a árvore a partir da expressão infixa
-    int i = 0;
-    while (expr[i] != '\0')
-    {
-        if (isdigit(expr[i]) || expr[i] == '.' || expr[i] == ' ') // Se o caractere é um dígito ou um ponto decimal, adiciona o número na pilha
-        {
-            float num = 0;
-            int decimal_places = 0;
-            while (isdigit(expr[i]) || expr[i] == '.' || expr[i] == ' ') // Lê o número completo
-            {
-                if (expr[i] == '.' && num == 0) // verifica se o número começa com um ponto decimal
-                    throw std::invalid_argument("Numero invalido");
-                if (expr[i] == '.') // conta o número de casas decimais
-                    decimal_places++;
-                if (decimal_places > 1) // verifica se o número tem mais de uma casa decimal
-                    throw std::invalid_argument("Numero invalido");
-                num = num * 10 + (expr[i] - '0');
-                i++;
-            }
-            pilha.Empilha(num);
-        }
-        else if (expr[i] == '+' || expr[i] == '-' || expr[i] == '*' || expr[i] == '/') // Se o caractere é um operador, desempilha dois números e realiza a operação
-        {
-            float op2 = pilha.Desempilha();
-            float op1 = pilha.Desempilha();
-            float res;
-            switch (expr[i])
-            {
-            case '+':
-                res = op1 + op2;
-                break;
-            case '-':
-                res = op1 - op2;
-                break;
-            case '*':
-                res = op1 * op2;
-                break;
-            case '/':
-                if (op2 == 0) // Verifica se a divisão por zero é inválida
-                    throw std::invalid_argument("Divisao por zero");
-                res = op1 / op2;
-                break;
-            }
-            pilha.Empilha(res);
-            i++;
-        }
-        else // Ignora outros caracteres
-        {
-            i++;
-        }
-    }
-
-    // O resultado é o único valor restante na pilha de valores
-    return pilha.Topo();
-}
-
-/**
  * @brief Função para resolver a expressão utilizando as funções acima
  *
  * @param filename
@@ -657,7 +538,7 @@ void Calculadora::resolveExpressao(const char *filename, char expression[], int 
             std::cout << "--------------------------------" << std::endl;
             std::cout << "Expressão convertida para Posfixa: " << converteInfToPos(lerExpressao(filename, expr, expression_type, exp_conv), expr) << std::endl;
             std::cout << "--------------------------------" << std::endl;
-            std::cout << "Resultado da operação: " << calculaInf(lerExpressao(filename, expr, expression_type, exp_conv)) << std::endl;
+            std::cout << "Resultado da operação: " << calculaPos(converteInfToPos(lerExpressao(filename, expr, expression_type, exp_conv), expr)) << std::endl;
             return;
         }
         else

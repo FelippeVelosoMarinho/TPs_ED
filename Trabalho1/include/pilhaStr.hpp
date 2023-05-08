@@ -1,12 +1,12 @@
 //---------------------------------------------------------------------
-// Arquivo      : pilha.hpp
-// Conteudo     : Classe pilha
+// Arquivo      : pilhaStr.hpp
+// Conteudo     : Classe pilhaStr
 // Autor        : Felippe Veloso Marinho. (felippe.veloso15@gmail.com)
-// Historico    : 16/04/2023 - arquivo criado
+// Historico    : 08/05/2023 - arquivo criado
 //---------------------------------------------------------------------
 
-#ifndef _PILHA_HPP_
-#define _PILHA_HPP_
+#ifndef _PILHA_STR_HPP_
+#define _PILHA_STR_HPP_
 
 #include <iostream>
 #include "exceptions.hpp"
@@ -14,22 +14,22 @@
 
 #define MAXTAM 1000
 
-class Pilha : public PilhaPai
+class PilhaStr : public PilhaPaiStr
 {
 public:
-    Pilha();
-    ~Pilha();
+    PilhaStr();
+    ~PilhaStr();
  
-    void Empilha(float item);
-    float Desempilha();
-    void Limpa();
+    void EmpilhaStr(char *item);
+    char *DesempilhaStr();
+    void LimpaStr();   
 
     // Função que retorna o topo da pilha
-    float Topo() { return itens[topo]; };
+    char *TopoStr() { return itens[topo]; };
 
 protected:
     int topo;
-    float itens[MAXTAM];
+    char *itens[MAXTAM];
 };
 
 #endif

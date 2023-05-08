@@ -14,6 +14,7 @@
 #include <cmath>
 #include "exceptions.hpp"
 #include "pilha.hpp"
+#include "pilhaStr.hpp"
 #include "arvore.hpp"
 
 using namespace std;
@@ -43,13 +44,11 @@ public:
 
     // Funções para converter a expressão
     char *converteInfToPos(char infixa[], char posfixa[]); // converte infixa para posfixa
-    char *convertePos(char posfixa[], char infixa[]); // converte posfixa para infixa
-    Pilha convertePraPos(char infixa[]);               // converte infixa para posfixa (retorna uma pilha
-    char *convertePostoInf(char posfixa[]);           // converte posfixa para infixa (retorna uma árvore)
+    char *convertePostoInf(char posfixa[]);           // converte posfixa para infixa
 
     // Funções para calcular a expressão
     float calculaPos(char posfixa[]);
-    float calculaInf(char infixa[]);
+    // float calculaInf(char infixa[]);
 
     // Função para resolver a expressão utilizando as funções acima
     void resolveExpressao(const char *filename, char expression[], int expression_type, int exp_conv);
