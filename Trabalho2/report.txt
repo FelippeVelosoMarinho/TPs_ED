@@ -1,0 +1,280 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+ no time accumulated
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00    12344     0.00     0.00  Point::~Point()
+  0.00      0.00     0.00     4035     0.00     0.00  Point::Point()
+  0.00      0.00     0.00       54     0.00     0.00  Point::computeAngle(Point)
+  0.00      0.00     0.00       48     0.00     0.00  Point::getY()
+  0.00      0.00     0.00       22     0.00     0.00  Pilha::Empilha(Point)
+  0.00      0.00     0.00       17     0.00     0.00  Point::orientation(Point, Point, Point)
+  0.00      0.00     0.00       15     0.00     0.00  Pilha::Desempilha()
+  0.00      0.00     0.00       10     0.00     0.00  Ordenadores::compare(Point, Point, Point)
+  0.00      0.00     0.00        8     0.00     0.00  Pilha::NextToTop(Pilha)
+  0.00      0.00     0.00        8     0.00     0.00  Point::distSquare(Point)
+  0.00      0.00     0.00        7     0.00     0.00  Ordenadores::merge(Point*, int, int, int, Point)
+  0.00      0.00     0.00        4     0.00     0.00  Point::getX()
+  0.00      0.00     0.00        3     0.00     0.00  Point::swap(Point&, Point&)
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN11Ordenadores11orientationE5PointS0_S0_
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN5Pilha7EmpilhaE5Point
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN5Point2p0E
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN6GrahamC2Ev
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN6JarvisC2Ev
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00      0.00     0.00        1     0.00     0.00  Ordenadores::countingSortByDigit(Point*, int, int)
+  0.00      0.00     0.00        1     0.00     0.00  Ordenadores::Radix(Point*, int)
+  0.00      0.00     0.00        1     0.00     0.00  Ordenadores::Insertion(Point*, int, Point)
+  0.00      0.00     0.00        1     0.00     0.00  Ordenadores::mergeSort(Point*, int, int, Point)
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) no time propagated
+
+index % time    self  children    called     name
+                0.00    0.00       8/12344       Ordenadores::countingSortByDigit(Point*, int, int) [28]
+                0.00    0.00      21/12344       Ordenadores::mergeSort(Point*, int, int, Point) [31]
+                0.00    0.00      24/12344       Pilha::NextToTop(Pilha) [16]
+                0.00    0.00      37/12344       Ordenadores::Insertion(Point*, int, Point) [30]
+                0.00    0.00      38/12344       Ordenadores::compare(Point, Point, Point) [15]
+                0.00    0.00      83/12344       Ordenadores::merge(Point*, int, int, int, Point) [18]
+                0.00    0.00    3040/12344       Graham::RadixConvexHull(Point*, int) [46]
+                0.00    0.00    4043/12344       Graham::InsertionConvexHull(Point*, int) [47]
+                0.00    0.00    5050/12344       Graham::MergeConvexHull(Point*, int) [45]
+[8]      0.0    0.00    0.00   12344         Point::~Point() [8]
+-----------------------------------------------
+                0.00    0.00       8/4035        Ordenadores::countingSortByDigit(Point*, int, int) [28]
+                0.00    0.00      24/4035        Ordenadores::merge(Point*, int, int, int, Point) [18]
+                0.00    0.00    1001/4035        Graham::InsertionConvexHull(Point*, int) [47]
+                0.00    0.00    1001/4035        Graham::RadixConvexHull(Point*, int) [46]
+                0.00    0.00    2001/4035        Graham::MergeConvexHull(Point*, int) [45]
+[9]      0.0    0.00    0.00    4035         Point::Point() [9]
+-----------------------------------------------
+                0.00    0.00      54/54          Ordenadores::merge(Point*, int, int, int, Point) [18]
+[10]     0.0    0.00    0.00      54         Point::computeAngle(Point) [10]
+-----------------------------------------------
+                0.00    0.00      48/48          Ordenadores::merge(Point*, int, int, int, Point) [18]
+[11]     0.0    0.00    0.00      48         Point::getY() [11]
+-----------------------------------------------
+                0.00    0.00       5/22          Graham::InsertionConvexHull(Point*, int) [47]
+                0.00    0.00       5/22          Graham::RadixConvexHull(Point*, int) [46]
+                0.00    0.00      12/22          Graham::MergeConvexHull(Point*, int) [45]
+[12]     0.0    0.00    0.00      22         Pilha::Empilha(Point) [12]
+-----------------------------------------------
+                0.00    0.00       8/17          Graham::RadixConvexHull(Point*, int) [46]
+                0.00    0.00       9/17          Graham::MergeConvexHull(Point*, int) [45]
+[13]     0.0    0.00    0.00      17         Point::orientation(Point, Point, Point) [13]
+-----------------------------------------------
+                0.00    0.00       5/15          Graham::MergeConvexHull(Point*, int) [45]
+                0.00    0.00       5/15          Graham::InsertionConvexHull(Point*, int) [47]
+                0.00    0.00       5/15          Graham::RadixConvexHull(Point*, int) [46]
+[14]     0.0    0.00    0.00      15         Pilha::Desempilha() [14]
+-----------------------------------------------
+                0.00    0.00      10/10          Ordenadores::Insertion(Point*, int, Point) [30]
+[15]     0.0    0.00    0.00      10         Ordenadores::compare(Point, Point, Point) [15]
+                0.00    0.00      38/12344       Point::~Point() [8]
+                0.00    0.00       8/8           Point::distSquare(Point) [17]
+-----------------------------------------------
+                0.00    0.00       2/8           Graham::RadixConvexHull(Point*, int) [46]
+                0.00    0.00       3/8           Graham::MergeConvexHull(Point*, int) [45]
+                0.00    0.00       3/8           Graham::InsertionConvexHull(Point*, int) [47]
+[16]     0.0    0.00    0.00       8         Pilha::NextToTop(Pilha) [16]
+                0.00    0.00      24/12344       Point::~Point() [8]
+-----------------------------------------------
+                0.00    0.00       8/8           Ordenadores::compare(Point, Point, Point) [15]
+[17]     0.0    0.00    0.00       8         Point::distSquare(Point) [17]
+-----------------------------------------------
+                0.00    0.00       7/7           Ordenadores::mergeSort(Point*, int, int, Point) [31]
+[18]     0.0    0.00    0.00       7         Ordenadores::merge(Point*, int, int, int, Point) [18]
+                0.00    0.00      83/12344       Point::~Point() [8]
+                0.00    0.00      54/54          Point::computeAngle(Point) [10]
+                0.00    0.00      48/48          Point::getY() [11]
+                0.00    0.00      24/4035        Point::Point() [9]
+                0.00    0.00       4/4           Point::getX() [19]
+-----------------------------------------------
+                0.00    0.00       4/4           Ordenadores::merge(Point*, int, int, int, Point) [18]
+[19]     0.0    0.00    0.00       4         Point::getX() [19]
+-----------------------------------------------
+                0.00    0.00       1/3           Graham::MergeConvexHull(Point*, int) [45]
+                0.00    0.00       1/3           Graham::InsertionConvexHull(Point*, int) [47]
+                0.00    0.00       1/3           Graham::RadixConvexHull(Point*, int) [46]
+[20]     0.0    0.00    0.00       3         Point::swap(Point&, Point&) [20]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [59]
+[21]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN11Ordenadores11orientationE5PointS0_S0_ [21]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [59]
+[22]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ [22]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [59]
+[23]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN5Pilha7EmpilhaE5Point [23]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [59]
+[24]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN5Point2p0E [24]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [59]
+[25]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN6GrahamC2Ev [25]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [59]
+[26]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN6JarvisC2Ev [26]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [59]
+[27]     0.0    0.00    0.00       1         _GLOBAL__sub_I_main [27]
+-----------------------------------------------
+                0.00    0.00       1/1           Ordenadores::Radix(Point*, int) [29]
+[28]     0.0    0.00    0.00       1         Ordenadores::countingSortByDigit(Point*, int, int) [28]
+                0.00    0.00       8/4035        Point::Point() [9]
+                0.00    0.00       8/12344       Point::~Point() [8]
+-----------------------------------------------
+                0.00    0.00       1/1           Graham::RadixConvexHull(Point*, int) [46]
+[29]     0.0    0.00    0.00       1         Ordenadores::Radix(Point*, int) [29]
+                0.00    0.00       1/1           Ordenadores::countingSortByDigit(Point*, int, int) [28]
+-----------------------------------------------
+                0.00    0.00       1/1           Graham::InsertionConvexHull(Point*, int) [47]
+[30]     0.0    0.00    0.00       1         Ordenadores::Insertion(Point*, int, Point) [30]
+                0.00    0.00      37/12344       Point::~Point() [8]
+                0.00    0.00      10/10          Ordenadores::compare(Point, Point, Point) [15]
+-----------------------------------------------
+                                  14             Ordenadores::mergeSort(Point*, int, int, Point) [31]
+                0.00    0.00       1/1           Graham::MergeConvexHull(Point*, int) [45]
+[31]     0.0    0.00    0.00       1+14      Ordenadores::mergeSort(Point*, int, int, Point) [31]
+                0.00    0.00      21/12344       Point::~Point() [8]
+                0.00    0.00       7/7           Ordenadores::merge(Point*, int, int, int, Point) [18]
+                                  14             Ordenadores::mergeSort(Point*, int, int, Point) [31]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [21] _GLOBAL__sub_I__ZN11Ordenadores11orientationE5PointS0_S0_ (ordenadores.cpp) [29] Ordenadores::Radix(Point*, int) [17] Point::distSquare(Point)
+  [22] _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ (tmp.cpp) [18] Ordenadores::merge(Point*, int, int, int, Point) [13] Point::orientation(Point, Point, Point)
+  [23] _GLOBAL__sub_I__ZN5Pilha7EmpilhaE5Point (pilha.cpp) [15] Ordenadores::compare(Point, Point, Point) [10] Point::computeAngle(Point)
+  [24] _GLOBAL__sub_I__ZN5Point2p0E (point.cpp) [30] Ordenadores::Insertion(Point*, int, Point) [19] Point::getX()
+  [25] _GLOBAL__sub_I__ZN6GrahamC2Ev (graham.cpp) [31] Ordenadores::mergeSort(Point*, int, int, Point) [11] Point::getY()
+  [26] _GLOBAL__sub_I__ZN6JarvisC2Ev (jarvis.cpp) [14] Pilha::Desempilha() [20] Point::swap(Point&, Point&)
+  [27] _GLOBAL__sub_I_main (main.cpp) [12] Pilha::Empilha(Point) [9] Point::Point()
+  [28] Ordenadores::countingSortByDigit(Point*, int, int) [16] Pilha::NextToTop(Pilha) [8] Point::~Point()
