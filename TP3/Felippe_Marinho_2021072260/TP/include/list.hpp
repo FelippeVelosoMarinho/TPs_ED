@@ -15,7 +15,7 @@
 
 typedef struct node
 {
-    unsigned char data;
+    unsigned char caracter;
     unsigned int frequency;
     struct node *esq, *dir, *next;
 } Node;
@@ -23,15 +23,17 @@ typedef struct node
 class List
 {
 private:
-    Node *head;
-    //Node *tail;
+    Node *inicio;
     unsigned int size;
 
 public:
     List();
     ~List();
-    void insertNode(unsigned char data, unsigned int frequency);
-    void fillList(unsigned int *table);
+    unsigned int getSize();
+    Node *getInicio();
+    void insertNode(List *list, Node *novo);
+    void fillList(unsigned int *table, List *list);
+    Node *removeInBegin(List *list);
     void printList();
 };
 

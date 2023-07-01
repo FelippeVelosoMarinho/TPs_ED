@@ -13,11 +13,7 @@
  */
 List::List()
 {
-    this->head = new Node; // Aloca um novo nó para a cabeça da lista
-    this->head->next = NULL;
-    this->size = 0;
-    // this->head = NULL;
-    // this->tail = NULL;
+    this->inicio = NULL;
     this->size = 0;
 }
 
@@ -27,112 +23,122 @@ List::List()
  */
 List::~List()
 {
-    Node *aux = this->head;
-    Node *aux2 = NULL;
-
+    Node *aux = this->inicio;
     while (aux != NULL)
     {
-        aux2 = aux->next;
+        Node *temp = aux->next;
         delete aux;
-        aux = aux2;
+        aux = temp;
     }
+}
+
+/**
+ * @brief Função para retornar o tamanho da lista
+ *
+ * @return unsigned int
+ */
+unsigned int List::getSize()
+{
+    return this->size;
+}
+
+/**
+ * @brief Função para retornar o inicio da lista
+ *
+ * @return Node*
+ */
+Node *List::getInicio()
+{
+    return this->inicio;
 }
 
 /**
  * @brief Função para inserir um nó na lista
  *
- * @param data
- * @param frequency
+ * @param void
  */
-void List::insertNode(unsigned char data, unsigned int frequency)
+void List::insertNode(List *list, Node *novo)
 {
-    // a lista esta vazia
-    if (this->head == NULL)
+    // a lista esta vazia?
+    if (list->inicio == NULL)
     {
-        this->head = new Node;
-        // this->size++;
+        list->inicio = novo;
     }
-    // tem frequencia menor q o inicio da lista
-    else if (this->head->frequency < frequency)
+    // tem a frequencia menor que o inicio da lista
+    else if (list->inicio->frequency > novo->frequency)
     {
-        Node *aux = new Node;
-        aux->data = data;
-        aux->frequency = frequency;
-        aux->next = this->head;
-        this->head = aux;
-        // this->size++;
+        novo->next = list->inicio;
+        list->inicio = novo;
     }
-    // a lista tem um elemento
-    else if (this->head->next == NULL)
-    {
-        Node *aux = new Node;
-        aux->data = data;
-        aux->frequency = frequency;
-        aux->next = NULL;
-        this->head->next = aux;
-        // this->size++;
-    }
-    // a lista tem mais de um elemento
     else
     {
-        Node *aux = this->head;
-        Node *aux2 = this->head->next;
+        Node *aux = list->inicio;
 
-        while (aux2 != NULL && aux2->frequency < frequency)
+        while (aux->next != NULL && aux->next->frequency < novo->frequency)
         {
             aux = aux->next;
-            aux2 = aux2->next;
         }
-
-        Node *aux3 = new Node;
-        aux3->data = data;
-        aux3->frequency = frequency;
-        aux3->next = aux2;
-        aux->next = aux3;
-        // this->size++;
+        novo->next = aux->next;
+        aux->next = novo;
     }
-    this->size++;
-    // this->tail = aux;
+    list->size++;
 }
 
 /**
- * @brief Função para preencher a lista
+ * @brief Função para preencher a lista encadeada
  *
  * @param table
  */
-void List::fillList(unsigned int *table)
+void List::fillList(unsigned int *table, List *list)
 {
-    for (int i = 0; i < MAX_SIZE; i++)
+    int i;
+    for (i = 0; i < MAX_SIZE; i++)
     {
-        this->insertNode(i, table[i]);
-        /*if (table[i] != 0)
+        if (table[i] > 0)
         {
-            this->insertNode(i, table[i]);
+            Node *novo = new Node;
+            novo->caracter = i;
+            novo->frequency = table[i];
+            novo->esq = NULL;
+            novo->dir = NULL;
+            novo->next = NULL;
+            this->insertNode(list, novo);
         }
-        else
-        {
-            throw FillListErrorException();
-        }*/
     }
 }
 
 /**
- * @brief Função para imprimir a lista
+ * @brief Função para remover o primeiro nó da lista
+ *
+ * @param list
+ * @return Node*
+ */
+Node *List::removeInBegin(List *list)
+{
+    if (list->inicio == NULL)
+    {
+        throw EmptyListException();
+    }
+    else
+    {
+        Node *aux = list->inicio;
+        list->inicio = list->inicio->next;
+        list->size--;
+        return aux;
+    }
+}
+
+/**
+ * @brief Função para imprimir a lista encadeada
  *
  */
 void List::printList()
 {
-    Node *aux = this->head;
-    std::cout << "Lista ordenada: " << std::endl;
-
+    Node *aux = this->inicio;
+    std::cout << "Lista encadeada:" << std::endl;
     while (aux != NULL)
     {
-        /*std::cout << aux->data << " " << aux->frequency << std::endl;
-        aux = aux->next;*/
-        if (aux->frequency > 0)
-        {
-            std::cout << aux->data << " " << aux->frequency << std::endl;
-        }
+        std::cout << aux->caracter << " " << aux->frequency << std::endl;
         aux = aux->next;
     }
 }

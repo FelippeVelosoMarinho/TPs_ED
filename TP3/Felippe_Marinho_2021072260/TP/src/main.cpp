@@ -11,7 +11,7 @@
 #include <ctime>
 #include <sys/resource.h>
 #include "../include/memlog.hpp"
-#include "../include/list.hpp"
+#include "../include/tree.hpp"
 
 /**
  * @brief Função principal do programa
@@ -63,6 +63,8 @@ int main(int argc, char *argv[])
     }
     FrequencyTable *tab = new FrequencyTable();
     List *lista = new List();
+    Node *raiz = new Node();
+    Tree *tree = new Tree();
 
     setlocale(LC_ALL, "Portuguese");
 
@@ -71,8 +73,17 @@ int main(int argc, char *argv[])
     tab->fillTable(texto);
     tab->printTable();
 
-    lista->fillList(tab->getTable());
+    lista->fillList(tab->getTable(), lista);
     lista->printList();
+
+    raiz = tree->createTree(lista); //&lista
+    std::cout << "Arvore de Huffman!" << std::endl;
+    tree->printTree(raiz, 0); // lista->getSize()
+
+    int columns = tree->treeHeight(raiz) + 1;
+    char **dictionary = tree->allocDictionary(columns);
+    tree->createDictionary(raiz, dictionary, new char[columns], columns); //new char[columns]
+    tree->printDictionary(dictionary, columns);
 
     // Define a fase 0 do memlog
     /*defineFaseMemLog(0); 

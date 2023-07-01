@@ -13,13 +13,27 @@
  * @brief Classe de exceção para arquivo não encontrado
  *
  */
-class FillListErrorException : public std::exception
+class AllocationErrorException : public std::exception
 {
 public:
-    FillListErrorException() {}
+    AllocationErrorException() {}
     const char *what() const throw()
     {
-        return "Erro na alocação da lista!";
+        return "Erro na alocação!";
+    }
+};
+
+/**
+ * @brief Classe de exceção de lista vazia
+ *
+ */
+class EmptyListException : public std::exception
+{
+public:
+    EmptyListException() {}
+    const char *what() const throw()
+    {
+        return "Lista vazia!";
     }
 };
 

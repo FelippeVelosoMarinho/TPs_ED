@@ -1,0 +1,185 @@
+//---------------------------------------------------------------------
+// Arquivo      : tree.cpp
+// Conteudo     : Implementacao da classe de arvore
+// Autor        : Felippe Veloso Marinho. (felippe.veloso15@gmail.com)
+// Historico    : 01/07/2023 - arquivo criado
+//---------------------------------------------------------------------
+
+#include "../include/tree.hpp"
+
+/**
+ * @brief Construtor da classe Tree
+ *
+ */
+Tree::Tree()
+{
+    this->raiz = NULL;
+}
+
+/**
+ * @brief Destrutor da classe Tree
+ *
+ */
+Tree::~Tree()
+{
+    if (this->raiz != NULL)
+    {
+        delete this->raiz;
+    }
+}
+
+/**
+ * @brief Função para criar a arvore
+ *
+ * @param list
+ * @return Node*
+ */
+Node *Tree::createTree(List *list)
+{
+    Node *first, *second;
+    List *aux;
+    while (list->getSize() > 1)
+    {
+        first = aux->removeInBegin(list);
+        second = aux->removeInBegin(list);
+
+        Node *novo = new Node;
+        if (novo)
+        {
+            novo->caracter = '*'; // caracter intermediario para indicar que é um nó, indiferente o valor
+            novo->frequency = first->frequency + second->frequency;
+            novo->esq = first;
+            novo->dir = second;
+            novo->next = NULL;
+
+            aux->insertNode(list, novo);
+        }
+        else
+        {
+            throw AllocationErrorException();
+        }
+    }
+    return list->getInicio();
+}
+
+/**
+ * @brief Função para imprimir a arvore
+ *
+ * @param raiz
+ * @param size
+ */
+void Tree::printTree(Node *raiz, int size)
+{
+    if (raiz->esq == NULL && raiz->dir == NULL)
+    {
+        std::cout << "Folha: " << raiz->caracter << " Altura: " << size << std::endl;
+    }
+    else
+    {
+        this->printTree(raiz->esq, size + 1);
+        this->printTree(raiz->dir, size + 1);
+    }
+}
+
+/**
+ * @brief Função para retornar a altura da arvore
+ *
+ * @param raiz
+ * @return int
+ */
+int Tree::treeHeight(Node *raiz)
+{
+    if (raiz == NULL)
+    {
+        return -1;
+    }
+    else
+    {
+        int he = this->treeHeight(raiz->esq);
+        int hd = this->treeHeight(raiz->dir);
+        if (he < hd)
+        {
+            return hd + 1;
+        }
+        else
+        {
+            return he + 1;
+        }
+    }
+}
+
+/**
+ * @brief Função para alocar o dicionario
+ *
+ * @param columns
+ * @return char**
+ */
+char **Tree::allocDictionary(int columns)
+{
+    char **dictionary = new char *[columns];
+    if (dictionary)
+    {
+        for (int i = 0; i < columns; i++)
+        {
+            dictionary[i] = new char[columns];
+            if (!dictionary[i])
+            {
+                throw AllocationErrorException();
+            }
+        }
+    }
+    else
+    {
+        throw AllocationErrorException();
+    }
+    return dictionary;
+}
+
+/**
+ * @brief Função para criar o dicionario
+ *
+ * @param raiz
+ * @param dictionary
+ * @param code
+ * @param size
+ */
+void Tree::createDictionary(Node *raiz, char **dictionary, char *code, int size)
+{
+    char esq[size], dir[size];
+    std::cout << "code: " << code << std::endl;
+    if (raiz->esq == NULL && raiz->dir == NULL)
+    {
+        strcpy(dictionary[raiz->caracter], code);
+    }
+    else
+    {
+        strcpy(esq, code);
+        strcpy(dir, code);
+
+        strcat(esq, "0");
+        strcat(dir, "1");
+
+        this->createDictionary(raiz->esq, dictionary, esq, size);
+        this->createDictionary(raiz->dir, dictionary, dir, size);
+    }
+    delete[] esq;
+    delete[] dir;
+}
+
+/**
+ * @brief Função para imprimir o dicionario
+ *
+ * @param dictionary
+ * @param columns
+ */
+void Tree::printDictionary(char **dictionary, int columns)
+{
+    std::cout << "Dicionario de Huffman!" << std::endl;
+    for (int i = 0; i < columns; i++)
+    {
+        if (strlen(dictionary[i]) > 0)
+        {
+            std::cout << dictionary[i] << std::endl;
+        }
+    }
+}
