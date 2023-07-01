@@ -1,0 +1,5 @@
+Avalie a saída do CacheGrind identificando:
+- Quão bem o programa se comporta em termos de memória:
+
+- Estruturas de dados a serem caracterizadas:
+- Segmentos de código a serem instrumentados:

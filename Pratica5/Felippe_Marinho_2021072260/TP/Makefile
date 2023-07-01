@@ -1,6 +1,6 @@
 # Compilador e flags
 CXX = g++
-CXXFLAGS = -g -Wall -O3 -std=c++17
+CXXFLAGS = -g --coverage -Wall -O3 -std=c++17
 INC_DIR = ./include
 SRC_DIR = ./src
 OBJ_DIR = ./obj
@@ -24,10 +24,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 $(TARGET): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-# Regra para compilar e executar o programa, coloque o caminho até o arquivo de entrada 
-# entre aspas após o comando. Exemplo: $(TARGET) "c:/Users/usuario/Desktop/entradas/entdouble.s1.n5.i.in"
+# Regra para compilar e executar o programa
 run: all
-	$(TARGET) "./enters/entdouble.s2.n5.p.in"
+	$(TARGET)
 
 # Limpeza dos arquivos objetos e do executável
 clean:

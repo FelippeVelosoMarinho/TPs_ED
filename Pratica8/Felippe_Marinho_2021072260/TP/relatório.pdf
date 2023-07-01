@@ -1,0 +1,44 @@
+O tempo de execução dos algoritmos de heapsort e shellsort reespectivamente são:
+----------
+HeapSort
+1
+1
+3
+5
+7
+7
+7
+8
+9
+9
+Tempo de usuário: 0.000046
+Tempo de sistema: 0.000000
+
+----------
+ShellSort
+1
+1
+3
+5
+7
+7
+7
+8
+9
+9
+Tempo de usuário: 0.000023
+Tempo de sistema: 0.000000
+
+É possível notar que definindo somente para dez posições de vetores os tempos de usuário de heapsort tem o tempo de usuário 
+duas vezes maior que o tempo de usuário de ShellSort.
+Verificando em 100 posições vemos que o algoritmo de shellsort tem um desempenho muito melhor sendo até mesmo uma casa 
+decimal abaixo em tempo de sistema em relação ao de heapsort.
+----------
+HeapSort
+Tempo de usuário: 0.000000
+Tempo de sistema: 0.000168
+
+----------
+ShellSort
+Tempo de usuário: 0.000000
+Tempo de sistema: 0.000009

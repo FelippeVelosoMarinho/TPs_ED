@@ -1,0 +1,48 @@
+1 - Apresentar um critério de balanceamento para as árvores binárias de pesquisa;
+R: O critério escolhido para o balanceamento foi o de árvores vermelha e preta, mas que irei apelidar de alvinegra por ser atleticano.
+
+2 - Explicar porque o critério escolhido realmente balanceia a árvore.
+R: Por serem regras que se aplicam durante a inserção e romoção dos nós esse método garante 
+uma árvore pseudo-balanceada onde cada nó é atribuído a uma cor (Preto ou Branco), sendo que os que acabaram de ser inseridos são pretos.
+A raiz da árvore também sempre é preta, não pode haver dois nós brancos consecutivos em um caminho da raiz de qualquer folha, o que 
+significa que um nó branco sempre tem um pai preto e seus filhos devem ser pretos.
+Mantendo todos os caminhos da raiz a qualquer folha devem ter o mesmo número de nós pretos, garantindo que a árvore esteja balanceada em termos de altura.
+Por último, caso um nó seja nulo, ele é considerado preto.
+
+3 - Indicar os segmentos de código (linhas de código) que tem que ser reavaliadas tendo em vista o critério escolhido.
+R: Os segmentos do código que terão que ser alterados vão desde o strcut, onde terá que ser definido o campo de color.
+
+Na função insert é necessário também terá que ser feita uma alteração, onde será chamada uma função auxiliar para a inserção de acordo com as cores.
+
+Todas as funções de rotate também terão que ser atualizadas para adicionar as cores dos nós corretamente.
+
+4 - Descrever a modificação necessária para o algoritmo de inclusão para manter a árvore satisfazendo o critério escolhido.
+R: Como dito acima, na função insert é necessário uma alteração, onde será chamada uma função auxiliar para a inserção de acordo com as cores.
+Essa função é fixInsertion e é chamada no final da função de inserção.
+
+5 - Descrever a modificação necessária para o algoritmo de remoção para manter a árvore satisfazendo o critério escolhido.
+R: Não foram necessárias mudanças na remoção da árvore.
+
+6 - Implementar as modificações apresentadas nos pontos anteriores.
+R: No código.
+
+7 - Comparar com a AVL original em termos do número de rotações para um conjunto de operações de inserções e retiradas.
+R: A quantidade de chamadas das rotações pra direita e esquerda com a entrada 1 9 6 2 8 7, foram 2 e 1 respectivamente, utilizando o critério de AVL.
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00        2     0.00     0.00  rotateright(node*)
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z9insertAVLP4nodeiP4stat
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00      0.00     0.00        1     0.00     0.00  rotateleft(node*)
+
+Utilizando o critério alvi-negro a quantidade de chamadas das funções de rotação de esquerda e direita, são iguais, porém há 16 chamadas da função para
+concertar a inserção.
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00       16     0.00     0.00  fixInsertion(node*, node*)
+  0.00      0.00     0.00        2     0.00     0.00  rotateright(node*)
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z9insertAVLP4nodeiP4stat
+  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00      0.00     0.00        1     0.00     0.00  rotateleft(node*)

@@ -1,0 +1,11 @@
+Primeiramente, tendo em vista um vetor de n posições e que a medida que h decresce,
+o vetor vai ficando cada vez mais próximo a ordenação.
+
+Sendo assim definimos para n = 1, h(n) = 1; com n sendo o size do vetor.
+Já para n > 1, seguindo um valor semelhante a (n/3) + 1 que é empíricamente o melhor valor conhecido para o h, definimos
+então, para s>1 chutamos um valor de h(n) = 5h(n-1) + 1.
+
+Para fazer as comparações com o algoritmo de heapsort irei utilizar a função getTime para medir o 
+tempo de execução das duas respectivas funções e o gnom.out para verifiação da medição também.
+
+testes n/3+1

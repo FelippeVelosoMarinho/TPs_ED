@@ -1,0 +1,15 @@
+Continuando o que foi feito na prática 6, utilizarei como estruturas de dados as pilha que utilizei no TP 1. 
+
+A função a ser instrumentada será a função converteInfToPos.
+
+Selecionar as estruturas de dados a serem monitorizadas:
+A estrutura de dados selecionada para esse algoritmo é uma pilha, representada pela classe Pilha. A pilha é utilizada para armazenar os operadores encontrados durante a conversão.
+
+Selecionar as funções a serem instrumentadas:
+No código fornecido, não há uma lista explícita de funções a serem instrumentadas. No entanto, o método converteInfToPos é a função principal que realiza a conversão de notação infixa para posfixa.
+
+Definir as fases de monitoramento:
+As fases de monitoramento não são especificamente mencionadas no código fornecido. No entanto, é possível identificar etapas importantes no processo de conversão que podem ser monitoradas, como o empilhamento e desempilhamento de elementos na pilha.
+
+Instrumentar o código (pelo menos parcialmente):
+A instrumentação do código envolve a adição de instruções para rastrear o comportamento do algoritmo. No código fornecido, é possível adicionar instruções de rastreamento para acompanhar a pilha, os elementos empilhados e desempilhados, bem como a construção da expressão posfixa. Por exemplo, você pode adicionar instruções std::cout para imprimir o estado da pilha em momentos-chave durante a execução do algoritmo.

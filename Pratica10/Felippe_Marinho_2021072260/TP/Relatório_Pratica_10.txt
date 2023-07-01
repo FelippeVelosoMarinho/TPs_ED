@@ -1,0 +1,50 @@
+- Planejar um conjunto de experimentos variando os parâmetros (sugerimos realizar alguns experimentos preliminares).
+Para os testes foram selecionados diferentes valores com grandes variações de m e CARGA.
+
+No primeiro exemplo foi selecionado:
+m = 10
+CARGA = 100
+
+No segundo:
+m = 100
+CARGA = 100
+
+No terceiro:
+m = 1000
+CARGA = 100
+
+No quarta:
+m = 2560
+CARGA = 832
+
+Possivelmente mais valores seguindo a mesma lógica...
+
+- Justificar porque o plano de experimentos exercita o compromisso entre os parâmetros.
+O plano tem o objetivo de verificar diferentes valores de m em valores de CARGA iguais para assim verificar  
+os valores maiores de "m" tendendo a resultar em uma altura menor da árvore B. Isso ocorre porque um nó maior pode acomodar mais chaves, o que significa que menos
+níveis de nós são necessários para armazenar a mesma quantidade de dados. Por outro lado, um valor menor de "m" resultará em uma altura maior da árvore, pois a capacidade
+de cada nó é reduzida e mais níveis são necessários para armazenar todas as chaves. Além de observar que com os valores maiores de "m" irá ser requisitado maiores espaços 
+de armazenamento, pois cada nó pode armazenar mais chaves.
+
+3 - Executar os experimentos planejados, medindo o tempo de execução e outros parâmetros que considerar pertinente
+
+1º Exemplo: O tempo de execução utilizando estes valores foram em grande maioria 0.000001sPesquisa -> 0.000000sInsere -> 0.000001sRetira -> 0.000001s 
+Os resultados no gmon.out refletem os números de chamada.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  Ts/call  Ts/call  name    
+  0.00      0.00     0.00     3068     0.00     0.00  Ret(long, Pagina**, short*)
+  0.00      0.00     0.00     2926     0.00     0.00  Ins(Registro, Pagina*, short*, Registro*, Pagina**)
+  0.00      0.00     0.00      154     0.00     0.00  Reconstitui(Pagina*, Pagina*, int, short*)
+  0.00      0.00     0.00       65     0.00     0.00  Antecessor(Pagina*, int, Pagina*, short*)
+
+2º Exemplo: Os maiores tempos de execução utilizando estes valores foram 0.000001sPesquisa -> 0.000003sInsere -> 0.000001sRetira -> 0.000001s
+Os resultados no gmon.out mostraram números iguais de chamadas.
+
+3º Exemplo: Os tempos de execução com esses exemplos foram 0.000000sInsere -> 0.000000sPesquisa -> 0.000000sRetira -> 0.000000s em todos os prints.
+
+4º Exemplo: Devido aos valores passados serem bem diferentes, os resultados foram diferentes, os tempos de execução foram:
+0.000002sRetira -> 0.000003sRetira -> 0.000003sPesquisa -> 0.000001s
+
+Analisar os resultados e elaborar um relatório: De acordo com os resultados obtidos com as entradas propostas é visível que o número de chamadas mesmo que para valores de m e Carga diferentes são bem semelhantes.
+Além disso, o tempo de execução demonstrado é sempre bem parecido. Ao tentar com valores muito altos de m o código retorna segmentation fault, o que demonstra que foi acessado posições não válidas das memórias.
+Sendo assim, com base nos testes demonstrados acima, um valores bons pra carga e m, são valores que não são muito altos para evitar que exploda mas valores mais baixos tendem a terem maiores tempos de execução.
