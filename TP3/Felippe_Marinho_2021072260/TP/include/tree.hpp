@@ -21,9 +21,6 @@ public:
     Node* createTree(List *list);
     void printTree(Node *raiz, int size);
     int treeHeight(Node *raiz);
-    char **allocDictionary(int columns);
-    void createDictionary(Node *raiz, char **dictionary, char *code, int size);
-    void printDictionary(char **dictionary, int columns);
 };
 
 #endif

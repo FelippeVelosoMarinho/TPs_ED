@@ -1,17 +1,24 @@
 Flat profile:
 
 Each sample counts as 0.01 seconds.
- no time accumulated
-
   %   cumulative   self              self     total           
  time   seconds   seconds    calls  Ts/call  Ts/call  name    
-  0.00      0.00     0.00       29     0.00     0.00  leMemLog(long, long, int)
-  0.00      0.00     0.00       28     0.00     0.00  escreveMemLog(long, long, int)
-  0.00      0.00     0.00       28     0.00     0.00  Tree::~Tree()
-  0.00      0.00     0.00        2     0.00     0.00  _init
-  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4TreeC2Ev
-  0.00      0.00     0.00        1     0.00     0.00  _GLOBAL__sub_I_ml
-  0.00      0.00     0.00        1     0.00     0.00  main
+ 46.73      0.07     0.07                             Compress::compact(unsigned char*)
+ 33.38      0.12     0.05                             Compress::compress(char**, unsigned char*)
+ 13.35      0.14     0.02                             readFile(char*)
+  6.68      0.15     0.01                             FrequencyTable::fillTable(unsigned char*)
+  0.00      0.15     0.00      206     0.00     0.00  List::removeInBegin(List*)
+  0.00      0.15     0.00      104     0.00     0.00  List::getSize()
+  0.00      0.15     0.00      103     0.00     0.00  List::insertNode(List*, node*)
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z8sizeFilePc
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN10DecompressC2Ev
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN10DictionaryC2Ev
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN14FrequencyTableC2Ev
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4ListC2Ev
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4TreeC2Ev
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN8CompressC2Ev
+  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I_ml
 
  %         the percentage of the total running time of the
 time       program used by this function.
@@ -49,31 +56,64 @@ notice and this notice are preserved.
 		     Call graph (explanation follows)
 
 
-granularity: each sample hit covers 2 byte(s) no time propagated
+granularity: each sample hit covers 2 byte(s) for 6.66% of 0.15 seconds
 
 index % time    self  children    called     name
-                0.00    0.00       1/1           FrequencyTable::setTable(unsigned int*) [25]
-[1]      0.0    0.00    0.00       1         main [1]
+                                                 <spontaneous>
+[1]     46.7    0.07    0.00                 Compress::compact(unsigned char*) [1]
 -----------------------------------------------
-                0.00    0.00      14/29          frame_dummy [6]
-                0.00    0.00      15/29          Tree::Tree() [45]
-[8]      0.0    0.00    0.00      29         leMemLog(long, long, int) [8]
+                                                 <spontaneous>
+[2]     33.3    0.05    0.00                 Compress::compress(char**, unsigned char*) [2]
 -----------------------------------------------
-                0.00    0.00      14/28          register_tm_clones [7]
-                0.00    0.00      14/28          __do_global_dtors_aux [48]
-[9]      0.0    0.00    0.00      28         escreveMemLog(long, long, int) [9]
+                                                 <spontaneous>
+[3]     13.3    0.02    0.00                 readFile(char*) [3]
 -----------------------------------------------
-                0.00    0.00      28/28          Tree::createTree(List*) [39]
-[10]     0.0    0.00    0.00      28         Tree::~Tree() [10]
+                                                 <spontaneous>
+[4]      6.7    0.01    0.00                 FrequencyTable::fillTable(unsigned char*) [4]
 -----------------------------------------------
-                0.00    0.00       2/2           FrequencyTable::setTable(unsigned int*) [25]
-[11]     0.0    0.00    0.00       2         _init [11]
+                0.00    0.00     206/206         Tree::createTree(List*) [59]
+[12]     0.0    0.00    0.00     206         List::removeInBegin(List*) [12]
 -----------------------------------------------
-                0.00    0.00       1/1           FrequencyTable::setTable(unsigned int*) [25]
-[12]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4TreeC2Ev [12]
+                0.00    0.00     104/104         Tree::createTree(List*) [59]
+[13]     0.0    0.00    0.00     104         List::getSize() [13]
 -----------------------------------------------
-                0.00    0.00       1/1           FrequencyTable::setTable(unsigned int*) [25]
-[13]     0.0    0.00    0.00       1         _GLOBAL__sub_I_ml [13]
+                0.00    0.00     103/103         Tree::createTree(List*) [59]
+[14]     0.0    0.00    0.00     103         List::insertNode(List*, node*) [14]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[15]     0.0    0.00    0.00       1         _GLOBAL__sub_I__Z8sizeFilePc [15]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[16]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN10DecompressC2Ev [16]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[17]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN10DictionaryC2Ev [17]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[18]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN14FrequencyTableC2Ev [18]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[19]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ [19]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[20]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4ListC2Ev [20]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[21]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4TreeC2Ev [21]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[22]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN8CompressC2Ev [22]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [73]
+[23]     0.0    0.00    0.00       1         _GLOBAL__sub_I_ml [23]
+-----------------------------------------------
+                                 206             Dictionary::createDictionary(char**, node*, char*, int) [40]
+[40]     0.0    0.00    0.00       0+206     Dictionary::createDictionary(char**, node*, char*, int) [40]
+                                 206             Dictionary::createDictionary(char**, node*, char*, int) [40]
+-----------------------------------------------
+                                 414             Tree::treeHeight(node*) [60]
+[60]     0.0    0.00    0.00       0+414     Tree::treeHeight(node*) [60]
+                                 414             Tree::treeHeight(node*) [60]
 -----------------------------------------------
 
  This table describes the call tree of the program, and was sorted by
@@ -166,6 +206,9 @@ notice and this notice are preserved.
 
 Index by function name
 
-  [12] _GLOBAL__sub_I__ZN4TreeC2Ev (tree.cpp) [8] leMemLog(long, long, int) [1] main
-  [13] _GLOBAL__sub_I_ml (memlog.cpp) [10] Tree::~Tree()
-   [9] escreveMemLog(long, long, int) [11] _init
+  [15] _GLOBAL__sub_I__Z8sizeFilePc (main.cpp) [21] _GLOBAL__sub_I__ZN4TreeC2Ev (tree.cpp) [12] List::removeInBegin(List*)
+  [16] _GLOBAL__sub_I__ZN10DecompressC2Ev (decompress.cpp) [22] _GLOBAL__sub_I__ZN8CompressC2Ev (compress.cpp) [13] List::getSize()
+  [17] _GLOBAL__sub_I__ZN10DictionaryC2Ev (dictionary.cpp) [23] _GLOBAL__sub_I_ml (memlog.cpp) [1] Compress::compact(unsigned char*)
+  [18] _GLOBAL__sub_I__ZN14FrequencyTableC2Ev (frequencyTable.cpp) [3] readFile(char*) [2] Compress::compress(char**, unsigned char*)
+  [19] _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ (tmp.cpp) [4] FrequencyTable::fillTable(unsigned char*)
+  [20] _GLOBAL__sub_I__ZN4ListC2Ev (list.cpp) [14] List::insertNode(List*, node*)

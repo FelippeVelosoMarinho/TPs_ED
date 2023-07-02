@@ -54,7 +54,7 @@ $(TARGET): $(OBJECTS)
 # Regra para compilar e executar o programa, coloque o caminho até o arquivo de entrada 
 # entre aspas após o comando. Exemplo: $(TARGET) "c:/Users/usuario/Desktop/entradas/entdouble.s1.n5.i.in"
 run: all
-	@$(TARGET) "../../ENTRADATESTE.txt" 
+	@$(TARGET) "./test/teste.txt" 
 	@$(GPROF_DIR) $(TARGET) gmon.out > $(REPORT)
 	@echo ""
 	@echo -e -n $(ANSI_GREEN)
