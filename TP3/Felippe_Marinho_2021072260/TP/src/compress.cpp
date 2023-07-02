@@ -12,10 +12,7 @@
  */
 Compress::Compress()
 {
-    this->fileInput = NULL;
-    this->fileOutput = NULL;
-    this->dictionary = NULL;
-    this->sizeDictionary = 0;
+
 }
 
 /**
@@ -24,25 +21,7 @@ Compress::Compress()
  */
 Compress::~Compress()
 {
-    if (this->fileInput != NULL)
-    {
-        delete[] this->fileInput;
-    }
-    if (this->fileOutput != NULL)
-    {
-        delete[] this->fileOutput;
-    }
-    if (this->dictionary != NULL)
-    {
-        for (int i = 0; i < this->sizeDictionary; i++)
-        {
-            if (this->dictionary[i] != NULL)
-            {
-                delete[] this->dictionary[i];
-            }
-        }
-        delete[] this->dictionary;
-    }
+
 }
 
 /**

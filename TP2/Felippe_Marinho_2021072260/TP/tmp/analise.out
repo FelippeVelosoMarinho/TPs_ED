@@ -1,0 +1,377 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  us/call  us/call  name    
+ 50.04      0.02     0.02 37928550     0.00     0.00  Point::~Point()
+ 25.02      0.03     0.01                             Tmp::diffSystemTime(rusage*, rusage*)
+ 25.02      0.04     0.01                             Graham::MergeConvexHull(Point*, int)
+  0.00      0.04     0.00   400974     0.00     0.00  Point::Point()
+  0.00      0.04     0.00    18022     0.00     0.00  Point::computeAngle(Point, int)
+  0.00      0.04     0.00     2004     0.00     0.00  Point::orientation(Point, Point, Point, int)
+  0.00      0.04     0.00     1709     0.00     0.00  Point::getY(int)
+  0.00      0.04     0.00      590     0.00     0.00  Pilha::Empilha(Point, int)
+  0.00      0.04     0.00      466     0.00     0.00  Pilha::Desempilha(int)
+  0.00      0.04     0.00      413     0.00     0.00  Point::getX(int)
+  0.00      0.04     0.00      375     0.00     0.00  Pilha::NextToTop(Pilha, int)
+  0.00      0.04     0.00      191     0.00     0.00  Sort::nextToTop(Pilha&, int)
+  0.00      0.04     0.00      144     0.00     0.00  Sort::compare(Point, Point, Point, int)
+  0.00      0.04     0.00       99     0.00     0.10  Sort::merge(Point*, int, int, int, Point, int)
+  0.00      0.04     0.00       13     0.00     0.00  Point::Point(int, int)
+  0.00      0.04     0.00       10     0.00     0.00  Point::isPointInHull(Point const&, Point*, int, int)
+  0.00      0.04     0.00        3     0.00     0.00  Point::swap(Point&, Point&, int)
+  0.00      0.04     0.00        2     0.00     0.00  Point::distSquare(Point, int)
+  0.00      0.04     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_
+  0.00      0.04     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4Sort13comparePointsE5PointS0_i
+  0.00      0.04     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN5Pilha7EmpilhaE5Pointi
+  0.00      0.04     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN5Point2p0E
+  0.00      0.04     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN6GrahamC2Ev
+  0.00      0.04     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00      0.04     0.00        1     0.00     0.00  _GLOBAL__sub_I_ml
+  0.00      0.04     0.00        1     0.00     0.00  _GLOBAL__sub_I_screen
+  0.00      0.04     0.00        1     0.00     0.05  Sort::Radix(Point*, int)
+  0.00      0.04     0.00        1     0.00     0.51  Sort::Insertion(Point*, int, Point, int)
+  0.00      0.04     0.00        1     0.00    10.23  Sort::mergeSort(Point*, int, int, Point, int)
+  0.00      0.04     0.00        1     0.00     0.00  Point::verifyCollinearPoints(Point*, int, int)
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 24.98% of 0.04 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     50.1    0.01    0.01                 Graham::MergeConvexHull(Point*, int) [1]
+                0.01    0.00 19001151/37928550     Point::~Point() [2]
+                0.00    0.00       1/1           Sort::mergeSort(Point*, int, int, Point, int) [6]
+                0.00    0.00     188/375         Pilha::NextToTop(Pilha, int) [9]
+                0.00    0.00  200001/400974      Point::Point() [22]
+                0.00    0.00     286/2004        Point::orientation(Point, Point, Point, int) [24]
+                0.00    0.00     199/590         Pilha::Empilha(Point, int) [26]
+                0.00    0.00     105/1709        Point::getY(int) [25]
+                0.00    0.00      91/466         Pilha::Desempilha(int) [27]
+                0.00    0.00       1/3           Point::swap(Point&, Point&, int) [31]
+                0.00    0.00       1/413         Point::getX(int) [28]
+                0.00    0.00       1/13          Point::Point(int, int) [29]
+-----------------------------------------------
+                0.00    0.00      98/37928550     Sort::Radix(Point*, int) [14]
+                0.00    0.00     131/37928550     Jarvis::drawConvexHull(Point*, int, Point*, int) [13]
+                0.00    0.00     297/37928550     Sort::mergeSort(Point*, int, int, Point, int) [6]
+                0.00    0.00     434/37928550     Sort::compare(Point, Point, Point, int) [12]
+                0.00    0.00     531/37928550     Sort::Insertion(Point*, int, Point, int) [10]
+                0.00    0.00     573/37928550     Sort::nextToTop(Pilha&, int) [11]
+                0.00    0.00    1125/37928550     Pilha::NextToTop(Pilha, int) [9]
+                0.00    0.00    3011/37928550     Jarvis::convexHull(Point*, int, Point*, bool) [8]
+                0.00    0.00   19089/37928550     Sort::merge(Point*, int, int, int, Point, int) [7]
+                0.00    0.00  101062/37928550     Graham::RadixConvexHull(Point*, int) [5]
+                0.01    0.00 18801048/37928550     Graham::InsertionConvexHull(Point*, int) [4]
+                0.01    0.00 19001151/37928550     Graham::MergeConvexHull(Point*, int) [1]
+[2]     50.0    0.02    0.00 37928550         Point::~Point() [2]
+-----------------------------------------------
+                                                 <spontaneous>
+[3]     25.0    0.01    0.00                 Tmp::diffSystemTime(rusage*, rusage*) [3]
+-----------------------------------------------
+                                                 <spontaneous>
+[4]     24.8    0.00    0.01                 Graham::InsertionConvexHull(Point*, int) [4]
+                0.01    0.00 18801048/37928550     Point::~Point() [2]
+                0.00    0.00       1/1           Sort::Insertion(Point*, int, Point, int) [10]
+                0.00    0.00     187/375         Pilha::NextToTop(Pilha, int) [9]
+                0.00    0.00  100001/400974      Point::Point() [22]
+                0.00    0.00     285/2004        Point::orientation(Point, Point, Point, int) [24]
+                0.00    0.00     101/1709        Point::getY(int) [25]
+                0.00    0.00     100/590         Pilha::Empilha(Point, int) [26]
+                0.00    0.00      90/466         Pilha::Desempilha(int) [27]
+                0.00    0.00       1/3           Point::swap(Point&, Point&, int) [31]
+                0.00    0.00       1/413         Point::getX(int) [28]
+                0.00    0.00       1/13          Point::Point(int, int) [29]
+-----------------------------------------------
+                                                 <spontaneous>
+[5]      0.1    0.00    0.00                 Graham::RadixConvexHull(Point*, int) [5]
+                0.00    0.00  101062/37928550     Point::~Point() [2]
+                0.00    0.00     191/191         Sort::nextToTop(Pilha&, int) [11]
+                0.00    0.00       1/1           Sort::Radix(Point*, int) [14]
+                0.00    0.00  100001/400974      Point::Point() [22]
+                0.00    0.00     289/2004        Point::orientation(Point, Point, Point, int) [24]
+                0.00    0.00     198/413         Point::getX(int) [28]
+                0.00    0.00     100/590         Pilha::Empilha(Point, int) [26]
+                0.00    0.00      94/466         Pilha::Desempilha(int) [27]
+                0.00    0.00       1/3           Point::swap(Point&, Point&, int) [31]
+-----------------------------------------------
+                                 198             Sort::mergeSort(Point*, int, int, Point, int) [6]
+                0.00    0.00       1/1           Graham::MergeConvexHull(Point*, int) [1]
+[6]      0.0    0.00    0.00       1+198     Sort::mergeSort(Point*, int, int, Point, int) [6]
+                0.00    0.00      99/99          Sort::merge(Point*, int, int, int, Point, int) [7]
+                0.00    0.00     297/37928550     Point::~Point() [2]
+                                 198             Sort::mergeSort(Point*, int, int, Point, int) [6]
+-----------------------------------------------
+                0.00    0.00      99/99          Sort::mergeSort(Point*, int, int, Point, int) [6]
+[7]      0.0    0.00    0.00      99         Sort::merge(Point*, int, int, int, Point, int) [7]
+                0.00    0.00   19089/37928550     Point::~Point() [2]
+                0.00    0.00   18022/18022       Point::computeAngle(Point, int) [23]
+                0.00    0.00    1492/1709        Point::getY(int) [25]
+                0.00    0.00     672/400974      Point::Point() [22]
+                0.00    0.00       4/413         Point::getX(int) [28]
+-----------------------------------------------
+                                                 <spontaneous>
+[8]      0.0    0.00    0.00                 Jarvis::convexHull(Point*, int, Point*, bool) [8]
+                0.00    0.00    3011/37928550     Point::~Point() [2]
+                0.00    0.00    1000/2004        Point::orientation(Point, Point, Point, int) [24]
+                0.00    0.00     209/413         Point::getX(int) [28]
+                0.00    0.00      11/1709        Point::getY(int) [25]
+                0.00    0.00      11/13          Point::Point(int, int) [29]
+                0.00    0.00       1/1           Point::verifyCollinearPoints(Point*, int, int) [41]
+-----------------------------------------------
+                0.00    0.00     187/375         Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00     188/375         Graham::MergeConvexHull(Point*, int) [1]
+[9]      0.0    0.00    0.00     375         Pilha::NextToTop(Pilha, int) [9]
+                0.00    0.00    1125/37928550     Point::~Point() [2]
+-----------------------------------------------
+                0.00    0.00       1/1           Graham::InsertionConvexHull(Point*, int) [4]
+[10]     0.0    0.00    0.00       1         Sort::Insertion(Point*, int, Point, int) [10]
+                0.00    0.00     531/37928550     Point::~Point() [2]
+                0.00    0.00     144/144         Sort::compare(Point, Point, Point, int) [12]
+-----------------------------------------------
+                0.00    0.00     191/191         Graham::RadixConvexHull(Point*, int) [5]
+[11]     0.0    0.00    0.00     191         Sort::nextToTop(Pilha&, int) [11]
+                0.00    0.00     573/37928550     Point::~Point() [2]
+                0.00    0.00     191/466         Pilha::Desempilha(int) [27]
+                0.00    0.00     191/590         Pilha::Empilha(Point, int) [26]
+-----------------------------------------------
+                0.00    0.00     144/144         Sort::Insertion(Point*, int, Point, int) [10]
+[12]     0.0    0.00    0.00     144         Sort::compare(Point, Point, Point, int) [12]
+                0.00    0.00     434/37928550     Point::~Point() [2]
+                0.00    0.00     144/2004        Point::orientation(Point, Point, Point, int) [24]
+                0.00    0.00       2/2           Point::distSquare(Point, int) [32]
+-----------------------------------------------
+                                                 <spontaneous>
+[13]     0.0    0.00    0.00                 Jarvis::drawConvexHull(Point*, int, Point*, int) [13]
+                0.00    0.00     131/37928550     Point::~Point() [2]
+                0.00    0.00      10/10          Point::isPointInHull(Point const&, Point*, int, int) [30]
+                0.00    0.00       1/400974      Point::Point() [22]
+-----------------------------------------------
+                0.00    0.00       1/1           Graham::RadixConvexHull(Point*, int) [5]
+[14]     0.0    0.00    0.00       1         Sort::Radix(Point*, int) [14]
+                0.00    0.00      98/37928550     Point::~Point() [2]
+                0.00    0.00      98/400974      Point::Point() [22]
+-----------------------------------------------
+                0.00    0.00       1/400974      Jarvis::drawConvexHull(Point*, int, Point*, int) [13]
+                0.00    0.00      98/400974      Sort::Radix(Point*, int) [14]
+                0.00    0.00     200/400974      Pilha::readPoints(char const*, int&) [62]
+                0.00    0.00     672/400974      Sort::merge(Point*, int, int, int, Point, int) [7]
+                0.00    0.00  100001/400974      Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00  100001/400974      Graham::RadixConvexHull(Point*, int) [5]
+                0.00    0.00  200001/400974      Graham::MergeConvexHull(Point*, int) [1]
+[22]     0.0    0.00    0.00  400974         Point::Point() [22]
+-----------------------------------------------
+                0.00    0.00   18022/18022       Sort::merge(Point*, int, int, int, Point, int) [7]
+[23]     0.0    0.00    0.00   18022         Point::computeAngle(Point, int) [23]
+-----------------------------------------------
+                0.00    0.00     144/2004        Sort::compare(Point, Point, Point, int) [12]
+                0.00    0.00     285/2004        Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00     286/2004        Graham::MergeConvexHull(Point*, int) [1]
+                0.00    0.00     289/2004        Graham::RadixConvexHull(Point*, int) [5]
+                0.00    0.00    1000/2004        Jarvis::convexHull(Point*, int, Point*, bool) [8]
+[24]     0.0    0.00    0.00    2004         Point::orientation(Point, Point, Point, int) [24]
+-----------------------------------------------
+                0.00    0.00      11/1709        Jarvis::convexHull(Point*, int, Point*, bool) [8]
+                0.00    0.00     101/1709        Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00     105/1709        Graham::MergeConvexHull(Point*, int) [1]
+                0.00    0.00    1492/1709        Sort::merge(Point*, int, int, int, Point, int) [7]
+[25]     0.0    0.00    0.00    1709         Point::getY(int) [25]
+-----------------------------------------------
+                0.00    0.00     100/590         Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00     100/590         Graham::RadixConvexHull(Point*, int) [5]
+                0.00    0.00     191/590         Sort::nextToTop(Pilha&, int) [11]
+                0.00    0.00     199/590         Graham::MergeConvexHull(Point*, int) [1]
+[26]     0.0    0.00    0.00     590         Pilha::Empilha(Point, int) [26]
+-----------------------------------------------
+                0.00    0.00      90/466         Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00      91/466         Graham::MergeConvexHull(Point*, int) [1]
+                0.00    0.00      94/466         Graham::RadixConvexHull(Point*, int) [5]
+                0.00    0.00     191/466         Sort::nextToTop(Pilha&, int) [11]
+[27]     0.0    0.00    0.00     466         Pilha::Desempilha(int) [27]
+-----------------------------------------------
+                0.00    0.00       1/413         Graham::MergeConvexHull(Point*, int) [1]
+                0.00    0.00       1/413         Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00       4/413         Sort::merge(Point*, int, int, int, Point, int) [7]
+                0.00    0.00     198/413         Graham::RadixConvexHull(Point*, int) [5]
+                0.00    0.00     209/413         Jarvis::convexHull(Point*, int, Point*, bool) [8]
+[28]     0.0    0.00    0.00     413         Point::getX(int) [28]
+-----------------------------------------------
+                0.00    0.00       1/13          Graham::MergeConvexHull(Point*, int) [1]
+                0.00    0.00       1/13          Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00      11/13          Jarvis::convexHull(Point*, int, Point*, bool) [8]
+[29]     0.0    0.00    0.00      13         Point::Point(int, int) [29]
+-----------------------------------------------
+                0.00    0.00      10/10          Jarvis::drawConvexHull(Point*, int, Point*, int) [13]
+[30]     0.0    0.00    0.00      10         Point::isPointInHull(Point const&, Point*, int, int) [30]
+-----------------------------------------------
+                0.00    0.00       1/3           Graham::MergeConvexHull(Point*, int) [1]
+                0.00    0.00       1/3           Graham::InsertionConvexHull(Point*, int) [4]
+                0.00    0.00       1/3           Graham::RadixConvexHull(Point*, int) [5]
+[31]     0.0    0.00    0.00       3         Point::swap(Point&, Point&, int) [31]
+-----------------------------------------------
+                0.00    0.00       2/2           Sort::compare(Point, Point, Point, int) [12]
+[32]     0.0    0.00    0.00       2         Point::distSquare(Point, int) [32]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [78]
+[33]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ [33]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [78]
+[34]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4Sort13comparePointsE5PointS0_i [34]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [78]
+[35]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN5Pilha7EmpilhaE5Pointi [35]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [78]
+[36]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN5Point2p0E [36]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [78]
+[37]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN6GrahamC2Ev [37]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [78]
+[38]     0.0    0.00    0.00       1         _GLOBAL__sub_I_main [38]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [78]
+[39]     0.0    0.00    0.00       1         _GLOBAL__sub_I_ml [39]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [78]
+[40]     0.0    0.00    0.00       1         _GLOBAL__sub_I_screen [40]
+-----------------------------------------------
+                0.00    0.00       1/1           Jarvis::convexHull(Point*, int, Point*, bool) [8]
+[41]     0.0    0.00    0.00       1         Point::verifyCollinearPoints(Point*, int, int) [41]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [33] _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ (tmp.cpp) [7] Sort::merge(Point*, int, int, int, Point, int) [23] Point::computeAngle(Point, int)
+  [34] _GLOBAL__sub_I__ZN4Sort13comparePointsE5PointS0_i (sort.cpp) [12] Sort::compare(Point, Point, Point, int) [30] Point::isPointInHull(Point const&, Point*, int, int)
+  [35] _GLOBAL__sub_I__ZN5Pilha7EmpilhaE5Pointi (pilha.cpp) [10] Sort::Insertion(Point*, int, Point, int) [41] Point::verifyCollinearPoints(Point*, int, int)
+  [36] _GLOBAL__sub_I__ZN5Point2p0E (point.cpp) [6] Sort::mergeSort(Point*, int, int, Point, int) [28] Point::getX(int)
+  [37] _GLOBAL__sub_I__ZN6GrahamC2Ev (graham.cpp) [11] Sort::nextToTop(Pilha&, int) [25] Point::getY(int)
+  [38] _GLOBAL__sub_I_main (fecho.cpp) [27] Pilha::Desempilha(int) [31] Point::swap(Point&, Point&, int)
+  [39] _GLOBAL__sub_I_ml (memlog.cpp) [26] Pilha::Empilha(Point, int) [22] Point::Point()
+  [40] _GLOBAL__sub_I_screen (jarvis.cpp) [9] Pilha::NextToTop(Pilha, int) [29] Point::Point(int, int)
+   [3] Tmp::diffSystemTime(rusage*, rusage*) [32] Point::distSquare(Point, int) [2] Point::~Point()
+  [14] Sort::Radix(Point*, int) [24] Point::orientation(Point, Point, Point, int) [1] Graham::MergeConvexHull(Point*, int)

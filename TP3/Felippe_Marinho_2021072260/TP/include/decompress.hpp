@@ -12,11 +12,6 @@
 
 class Decompress
 {
-private:
-    char *fileInput;
-    char *fileOutput;
-    char **dictionary;
-    int sizeDictionary;
 public:
     Decompress();
     ~Decompress();

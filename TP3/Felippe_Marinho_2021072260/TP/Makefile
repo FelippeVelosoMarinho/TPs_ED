@@ -8,6 +8,7 @@ TMP_DIR = ./tmp
 GPROF_DIR = gprof
 BIN_DIR = ./bin
 REPORT = ./tmp/analise.out
+COMPACTED = ./compactado.wg
 
 # Nome do executável
 TARGET = $(BIN_DIR)/main
@@ -44,11 +45,11 @@ $(TARGET): $(OBJECTS)
 	@echo $(ANSI_GREEN) "Para executar o programa diretamente, digite:" $(ANSI_DEFAULT)
 	@echo $(ANSI_YELLOW) "----- ./bin/main 'ENTRADA.txt' -----" $(ANSI_DEFAULT)
 	@echo ""
-	@echo $(ANSI_GREEN) "Para executar o programa e descompactar, digite:" $(ANSI_DEFAULT)
-	@echo $(ANSI_YELLOW) "----- ./bin/main 'ENTRADA.txt' -d -----" $(ANSI_DEFAULT)
-	@echo ""
 	@echo $(ANSI_GREEN) "Para executar o programa e compactar, digite:" $(ANSI_DEFAULT)
 	@echo $(ANSI_YELLOW) "----- ./bin/main 'ENTRADA.txt' -c -----" $(ANSI_DEFAULT)
+	@echo ""
+	@echo $(ANSI_GREEN) "Para executar o programa e descompactar, digite:" $(ANSI_DEFAULT)
+	@echo $(ANSI_YELLOW) "----- ./bin/main 'ENTRADA.txt' -d -----" $(ANSI_DEFAULT)
 	@echo ""
 
 # Regra para compilar e executar o programa, coloque o caminho até o arquivo de entrada 
@@ -64,7 +65,7 @@ run: all
 
 # Limpeza dos arquivos objetos e do executável
 clean:
-	@$(RM) -r $(OBJ_DIR)/* $(BIN_DIR)/* $(REPORT) coverage/* *.gcda *.gcno
+	@$(RM) -r $(OBJ_DIR)/* $(BIN_DIR)/* $(COMPACTED) $(REPORT) coverage/* *.gcda *.gcno
 	@echo ""
 	@echo $(ANSI_RED) "----- Arquivos objetos e executáveis removidos! -----" $(ANSI_DEFAULT)
 	@echo ""

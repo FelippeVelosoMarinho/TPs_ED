@@ -12,11 +12,6 @@
 
 class Compress
 {
-private:
-    char *fileInput;
-    char *fileOutput;
-    char **dictionary;
-    int sizeDictionary;
 public:
     Compress();
     ~Compress();

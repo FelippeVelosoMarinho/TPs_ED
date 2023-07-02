@@ -1,3 +1,9 @@
+// Arquivo      : tmp.hpp
+// Conteudo     : Classes das funções temporais
+// Autor        : Felippe Veloso Marinho. (felippe.veloso15@gmail.com)
+// Historico    : 02/07/2023 - arquivo criado
+//-----
+
 #include <iostream>
 #include <stdlib.h>
 #include <stdio.h>

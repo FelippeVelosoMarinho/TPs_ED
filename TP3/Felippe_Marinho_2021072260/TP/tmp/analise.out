@@ -2,23 +2,49 @@ Flat profile:
 
 Each sample counts as 0.01 seconds.
   %   cumulative   self              self     total           
- time   seconds   seconds    calls  Ts/call  Ts/call  name    
- 46.73      0.07     0.07                             Compress::compact(unsigned char*)
- 33.38      0.12     0.05                             Compress::compress(char**, unsigned char*)
- 13.35      0.14     0.02                             readFile(char*)
-  6.68      0.15     0.01                             FrequencyTable::fillTable(unsigned char*)
-  0.00      0.15     0.00      206     0.00     0.00  List::removeInBegin(List*)
-  0.00      0.15     0.00      104     0.00     0.00  List::getSize()
-  0.00      0.15     0.00      103     0.00     0.00  List::insertNode(List*, node*)
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__Z8sizeFilePc
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN10DecompressC2Ev
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN10DictionaryC2Ev
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN14FrequencyTableC2Ev
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4ListC2Ev
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4TreeC2Ev
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN8CompressC2Ev
-  0.00      0.15     0.00        1     0.00     0.00  _GLOBAL__sub_I_ml
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 66.74      0.04     0.04        1    40.04    40.04  Compress::compress(char**, unsigned char*)
+ 16.68      0.05     0.01        1    10.01    10.01  Program::readFile(char*)
+ 16.68      0.06     0.01        1    10.01    10.01  Compress::compact(unsigned char*)
+  0.00      0.06     0.00      206     0.00     0.00  List::removeInBegin(List*)
+  0.00      0.06     0.00      104     0.00     0.00  List::getSize()
+  0.00      0.06     0.00      103     0.00     0.00  List::insertNode(List*, node*)
+  0.00      0.06     0.00        2     0.00     0.00  Program::sizeFileBytes(char*)
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN10DecompressC2Ev
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN10DictionaryC2Ev
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN14FrequencyTableC2Ev
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4ListC2Ev
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4TreeC2Ev
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN7Program8sizeFileEPc
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN8CompressC2Ev
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00      0.06     0.00        1     0.00     0.00  _GLOBAL__sub_I_ml
+  0.00      0.06     0.00        1     0.00     0.00  ativaMemLog()
+  0.00      0.06     0.00        1     0.00     0.00  iniciaMemLog(char*)
+  0.00      0.06     0.00        1     0.00     0.00  finalizaMemLog()
+  0.00      0.06     0.00        1     0.00     0.00  defineFaseMemLog(int)
+  0.00      0.06     0.00        1     0.00     0.00  Decompress::Decompress()
+  0.00      0.06     0.00        1     0.00     0.00  Decompress::~Decompress()
+  0.00      0.06     0.00        1     0.00     0.00  Dictionary::allocDictionary(int)
+  0.00      0.06     0.00        1     0.00     0.00  Dictionary::createDictionary(char**, node*, char*, int)
+  0.00      0.06     0.00        1     0.00     0.00  Dictionary::Dictionary()
+  0.00      0.06     0.00        1     0.00     0.00  Dictionary::~Dictionary()
+  0.00      0.06     0.00        1     0.00     0.00  FrequencyTable::fillTable(unsigned char*)
+  0.00      0.06     0.00        1     0.00     0.00  FrequencyTable::FrequencyTable()
+  0.00      0.06     0.00        1     0.00     0.00  FrequencyTable::~FrequencyTable()
+  0.00      0.06     0.00        1     0.00     0.00  Tmp::diffUserTime(rusage*, rusage*)
+  0.00      0.06     0.00        1     0.00     0.00  Tmp::diffSystemTime(rusage*, rusage*)
+  0.00      0.06     0.00        1     0.00     0.00  List::fillList(unsigned int*, List*)
+  0.00      0.06     0.00        1     0.00     0.00  List::getInicio()
+  0.00      0.06     0.00        1     0.00     0.00  List::List()
+  0.00      0.06     0.00        1     0.00     0.00  List::~List()
+  0.00      0.06     0.00        1     0.00     0.00  Tree::createTree(List*)
+  0.00      0.06     0.00        1     0.00     0.00  Tree::treeHeight(node*)
+  0.00      0.06     0.00        1     0.00     0.00  Tree::Tree()
+  0.00      0.06     0.00        1     0.00     0.00  Tree::~Tree()
+  0.00      0.06     0.00        1     0.00     0.00  Compress::Compress()
+  0.00      0.06     0.00        1     0.00     0.00  Compress::~Compress()
 
  %         the percentage of the total running time of the
 time       program used by this function.
@@ -56,64 +82,173 @@ notice and this notice are preserved.
 		     Call graph (explanation follows)
 
 
-granularity: each sample hit covers 2 byte(s) for 6.66% of 0.15 seconds
+granularity: each sample hit covers 2 byte(s) for 16.65% of 0.06 seconds
 
 index % time    self  children    called     name
                                                  <spontaneous>
-[1]     46.7    0.07    0.00                 Compress::compact(unsigned char*) [1]
+[1]    100.0    0.00    0.06                 Program::printMenu(bool, bool, char*) [1]
+                0.04    0.00       1/1           Compress::compress(char**, unsigned char*) [2]
+                0.01    0.00       1/1           Program::readFile(char*) [3]
+                0.01    0.00       1/1           Compress::compact(unsigned char*) [4]
+                0.00    0.00       2/2           Program::sizeFileBytes(char*) [15]
+                0.00    0.00       1/1           FrequencyTable::FrequencyTable() [37]
+                0.00    0.00       1/1           List::List() [43]
+                0.00    0.00       1/1           Tree::Tree() [47]
+                0.00    0.00       1/1           Dictionary::Dictionary() [34]
+                0.00    0.00       1/1           Compress::Compress() [49]
+                0.00    0.00       1/1           Decompress::Decompress() [30]
+                0.00    0.00       1/1           iniciaMemLog(char*) [27]
+                0.00    0.00       1/1           defineFaseMemLog(int) [29]
+                0.00    0.00       1/1           ativaMemLog() [26]
+                0.00    0.00       1/1           FrequencyTable::fillTable(unsigned char*) [36]
+                0.00    0.00       1/1           List::fillList(unsigned int*, List*) [41]
+                0.00    0.00       1/1           List::getInicio() [42]
+                0.00    0.00       1/1           Tree::createTree(List*) [45]
+                0.00    0.00       1/1           Tree::treeHeight(node*) [46]
+                0.00    0.00       1/1           Dictionary::allocDictionary(int) [32]
+                0.00    0.00       1/1           Dictionary::createDictionary(char**, node*, char*, int) [33]
+                0.00    0.00       1/1           FrequencyTable::~FrequencyTable() [38]
+                0.00    0.00       1/1           List::~List() [44]
+                0.00    0.00       1/1           Tree::~Tree() [48]
+                0.00    0.00       1/1           Dictionary::~Dictionary() [35]
+                0.00    0.00       1/1           Compress::~Compress() [50]
+                0.00    0.00       1/1           Decompress::~Decompress() [31]
+                0.00    0.00       1/1           Tmp::diffUserTime(rusage*, rusage*) [39]
+                0.00    0.00       1/1           Tmp::diffSystemTime(rusage*, rusage*) [40]
+                0.00    0.00       1/1           finalizaMemLog() [28]
 -----------------------------------------------
-                                                 <spontaneous>
-[2]     33.3    0.05    0.00                 Compress::compress(char**, unsigned char*) [2]
+                0.04    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[2]     66.7    0.04    0.00       1         Compress::compress(char**, unsigned char*) [2]
 -----------------------------------------------
-                                                 <spontaneous>
-[3]     13.3    0.02    0.00                 readFile(char*) [3]
+                0.01    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[3]     16.7    0.01    0.00       1         Program::readFile(char*) [3]
 -----------------------------------------------
-                                                 <spontaneous>
-[4]      6.7    0.01    0.00                 FrequencyTable::fillTable(unsigned char*) [4]
+                0.01    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[4]     16.7    0.01    0.00       1         Compress::compact(unsigned char*) [4]
 -----------------------------------------------
-                0.00    0.00     206/206         Tree::createTree(List*) [59]
+                0.00    0.00     206/206         Tree::createTree(List*) [45]
 [12]     0.0    0.00    0.00     206         List::removeInBegin(List*) [12]
 -----------------------------------------------
-                0.00    0.00     104/104         Tree::createTree(List*) [59]
+                0.00    0.00     104/104         Tree::createTree(List*) [45]
 [13]     0.0    0.00    0.00     104         List::getSize() [13]
 -----------------------------------------------
-                0.00    0.00     103/103         Tree::createTree(List*) [59]
+                0.00    0.00     103/103         Tree::createTree(List*) [45]
 [14]     0.0    0.00    0.00     103         List::insertNode(List*, node*) [14]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
-[15]     0.0    0.00    0.00       1         _GLOBAL__sub_I__Z8sizeFilePc [15]
+                0.00    0.00       2/2           Program::printMenu(bool, bool, char*) [1]
+[15]     0.0    0.00    0.00       2         Program::sizeFileBytes(char*) [15]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
+                0.00    0.00       1/1           __libc_csu_init [77]
 [16]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN10DecompressC2Ev [16]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
+                0.00    0.00       1/1           __libc_csu_init [77]
 [17]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN10DictionaryC2Ev [17]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
+                0.00    0.00       1/1           __libc_csu_init [77]
 [18]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN14FrequencyTableC2Ev [18]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
+                0.00    0.00       1/1           __libc_csu_init [77]
 [19]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ [19]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
+                0.00    0.00       1/1           __libc_csu_init [77]
 [20]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4ListC2Ev [20]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
+                0.00    0.00       1/1           __libc_csu_init [77]
 [21]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4TreeC2Ev [21]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
-[22]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN8CompressC2Ev [22]
+                0.00    0.00       1/1           __libc_csu_init [77]
+[22]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN7Program8sizeFileEPc [22]
 -----------------------------------------------
-                0.00    0.00       1/1           __libc_csu_init [73]
-[23]     0.0    0.00    0.00       1         _GLOBAL__sub_I_ml [23]
+                0.00    0.00       1/1           __libc_csu_init [77]
+[23]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN8CompressC2Ev [23]
 -----------------------------------------------
-                                 206             Dictionary::createDictionary(char**, node*, char*, int) [40]
-[40]     0.0    0.00    0.00       0+206     Dictionary::createDictionary(char**, node*, char*, int) [40]
-                                 206             Dictionary::createDictionary(char**, node*, char*, int) [40]
+                0.00    0.00       1/1           __libc_csu_init [77]
+[24]     0.0    0.00    0.00       1         _GLOBAL__sub_I_main [24]
 -----------------------------------------------
-                                 414             Tree::treeHeight(node*) [60]
-[60]     0.0    0.00    0.00       0+414     Tree::treeHeight(node*) [60]
-                                 414             Tree::treeHeight(node*) [60]
+                0.00    0.00       1/1           __libc_csu_init [77]
+[25]     0.0    0.00    0.00       1         _GLOBAL__sub_I_ml [25]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[26]     0.0    0.00    0.00       1         ativaMemLog() [26]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[27]     0.0    0.00    0.00       1         iniciaMemLog(char*) [27]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[28]     0.0    0.00    0.00       1         finalizaMemLog() [28]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[29]     0.0    0.00    0.00       1         defineFaseMemLog(int) [29]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[30]     0.0    0.00    0.00       1         Decompress::Decompress() [30]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[31]     0.0    0.00    0.00       1         Decompress::~Decompress() [31]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[32]     0.0    0.00    0.00       1         Dictionary::allocDictionary(int) [32]
+-----------------------------------------------
+                                 206             Dictionary::createDictionary(char**, node*, char*, int) [33]
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[33]     0.0    0.00    0.00       1+206     Dictionary::createDictionary(char**, node*, char*, int) [33]
+                                 206             Dictionary::createDictionary(char**, node*, char*, int) [33]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[34]     0.0    0.00    0.00       1         Dictionary::Dictionary() [34]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[35]     0.0    0.00    0.00       1         Dictionary::~Dictionary() [35]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[36]     0.0    0.00    0.00       1         FrequencyTable::fillTable(unsigned char*) [36]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[37]     0.0    0.00    0.00       1         FrequencyTable::FrequencyTable() [37]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[38]     0.0    0.00    0.00       1         FrequencyTable::~FrequencyTable() [38]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[39]     0.0    0.00    0.00       1         Tmp::diffUserTime(rusage*, rusage*) [39]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[40]     0.0    0.00    0.00       1         Tmp::diffSystemTime(rusage*, rusage*) [40]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[41]     0.0    0.00    0.00       1         List::fillList(unsigned int*, List*) [41]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[42]     0.0    0.00    0.00       1         List::getInicio() [42]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[43]     0.0    0.00    0.00       1         List::List() [43]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[44]     0.0    0.00    0.00       1         List::~List() [44]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[45]     0.0    0.00    0.00       1         Tree::createTree(List*) [45]
+                0.00    0.00     206/206         List::removeInBegin(List*) [12]
+                0.00    0.00     104/104         List::getSize() [13]
+                0.00    0.00     103/103         List::insertNode(List*, node*) [14]
+-----------------------------------------------
+                                 414             Tree::treeHeight(node*) [46]
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[46]     0.0    0.00    0.00       1+414     Tree::treeHeight(node*) [46]
+                                 414             Tree::treeHeight(node*) [46]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[47]     0.0    0.00    0.00       1         Tree::Tree() [47]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[48]     0.0    0.00    0.00       1         Tree::~Tree() [48]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[49]     0.0    0.00    0.00       1         Compress::Compress() [49]
+-----------------------------------------------
+                0.00    0.00       1/1           Program::printMenu(bool, bool, char*) [1]
+[50]     0.0    0.00    0.00       1         Compress::~Compress() [50]
 -----------------------------------------------
 
  This table describes the call tree of the program, and was sorted by
@@ -206,9 +341,17 @@ notice and this notice are preserved.
 
 Index by function name
 
-  [15] _GLOBAL__sub_I__Z8sizeFilePc (main.cpp) [21] _GLOBAL__sub_I__ZN4TreeC2Ev (tree.cpp) [12] List::removeInBegin(List*)
-  [16] _GLOBAL__sub_I__ZN10DecompressC2Ev (decompress.cpp) [22] _GLOBAL__sub_I__ZN8CompressC2Ev (compress.cpp) [13] List::getSize()
-  [17] _GLOBAL__sub_I__ZN10DictionaryC2Ev (dictionary.cpp) [23] _GLOBAL__sub_I_ml (memlog.cpp) [1] Compress::compact(unsigned char*)
-  [18] _GLOBAL__sub_I__ZN14FrequencyTableC2Ev (frequencyTable.cpp) [3] readFile(char*) [2] Compress::compress(char**, unsigned char*)
-  [19] _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ (tmp.cpp) [4] FrequencyTable::fillTable(unsigned char*)
-  [20] _GLOBAL__sub_I__ZN4ListC2Ev (list.cpp) [14] List::insertNode(List*, node*)
+  [16] _GLOBAL__sub_I__ZN10DecompressC2Ev (decompress.cpp) [30] Decompress::Decompress() [41] List::fillList(unsigned int*, List*)
+  [17] _GLOBAL__sub_I__ZN10DictionaryC2Ev (dictionary.cpp) [31] Decompress::~Decompress() [42] List::getInicio()
+  [18] _GLOBAL__sub_I__ZN14FrequencyTableC2Ev (frequencyTable.cpp) [32] Dictionary::allocDictionary(int) [43] List::List()
+  [19] _GLOBAL__sub_I__ZN3Tmp12diffUserTimeEP6rusageS1_ (tmp.cpp) [33] Dictionary::createDictionary(char**, node*, char*, int) [44] List::~List()
+  [20] _GLOBAL__sub_I__ZN4ListC2Ev (list.cpp) [34] Dictionary::Dictionary() [45] Tree::createTree(List*)
+  [21] _GLOBAL__sub_I__ZN4TreeC2Ev (tree.cpp) [35] Dictionary::~Dictionary() [46] Tree::treeHeight(node*)
+  [22] _GLOBAL__sub_I__ZN7Program8sizeFileEPc (program.cpp) [36] FrequencyTable::fillTable(unsigned char*) [47] Tree::Tree()
+  [23] _GLOBAL__sub_I__ZN8CompressC2Ev (compress.cpp) [37] FrequencyTable::FrequencyTable() [48] Tree::~Tree()
+  [24] _GLOBAL__sub_I_main (main.cpp) [38] FrequencyTable::~FrequencyTable() [15] Program::sizeFileBytes(char*)
+  [25] _GLOBAL__sub_I_ml (memlog.cpp) [39] Tmp::diffUserTime(rusage*, rusage*) [3] Program::readFile(char*)
+  [26] ativaMemLog()          [40] Tmp::diffSystemTime(rusage*, rusage*) [4] Compress::compact(unsigned char*)
+  [27] iniciaMemLog(char*)    [14] List::insertNode(List*, node*) [2] Compress::compress(char**, unsigned char*)
+  [28] finalizaMemLog()       [12] List::removeInBegin(List*) [49] Compress::Compress()
+  [29] defineFaseMemLog(int)  [13] List::getSize()        [50] Compress::~Compress()
