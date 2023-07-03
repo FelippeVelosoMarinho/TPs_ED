@@ -19,8 +19,7 @@
 #include "../include/tmp.hpp"
 
 // Definição de cores
-#define RESET   "\033[0m"
-#define BLACK   "\033[30m"      
+#define RESET   "\033[0m"  
 #define RED     "\033[31m"      
 #define GREEN   "\033[32m"      
 #define YELLOW  "\033[33m" 
@@ -34,7 +33,11 @@ public:
     unsigned char *readFile(char *caminho);
     bool processArguments(int argc, char *argv[], char*& caminho, bool& descompactar, bool& compactar);
     int sizeFileBytes(char *caminho); // Função para calcular quantos bytes tem o arquivo
-    int printMenu(bool compactar, bool descompactar, char* caminho);
+    void salvarArquivo(unsigned char *texto); // Função auxiliar que salva um arquivo contendo o texto original em um arquivo txt
+    void salvarArquivoDescompactado(unsigned char *texto); 
+    void salvarTabelaFrequencia(const int* tabela);
+    int* carregarTabelaFrequencia();
+    int printMenu(int argc, char *argv[]);
 };
 
 #endif

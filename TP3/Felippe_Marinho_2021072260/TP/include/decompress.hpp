@@ -8,6 +8,8 @@
 #define _DECOMPRESS_HPP_
 
 #include <stdio.h>
+#include <fstream>
+#include <cstring>
 #include "dictionary.hpp"
 
 class Decompress
@@ -15,9 +17,9 @@ class Decompress
 public:
     Decompress();
     ~Decompress();
-    char* decompress(unsigned char *texto, Node *root);
+    char* decompress(unsigned char *texto, Node *root); // Função para descodificar o texto
     unsigned int isBitOne(unsigned char byte, int pos);
-    void descompact(Node *root);
+    unsigned char* descompactar();
 };
 
 #endif

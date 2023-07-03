@@ -10,6 +10,48 @@
 #include <exception>
 
 /**
+ * @brief Classe de exceção para erro na escrita ou leitura do arquivo
+ * 
+ */
+class FileErrorException : public std::exception
+{
+public:
+    FileErrorException() {}
+    const char *what() const throw()
+    {
+        return "Erro na escrita ou leitura do arquivo!";
+    }
+};
+
+/**
+ * @brief Classe de exceção para erro na compressão
+ *
+ */
+class CompressionErrorException : public std::exception
+{
+public:
+    CompressionErrorException() {}
+    const char *what() const throw()
+    {
+        return "Erro na compressão!";
+    }
+};
+
+/**
+ * @brief Classe de exceção para erro na descompressão
+ *
+ */
+class DecompressionErrorException : public std::exception
+{
+public:
+    DecompressionErrorException() {}
+    const char *what() const throw()
+    {
+        return "Erro na descompressão!";
+    }
+};
+
+/**
  * @brief Classe de exceção para arquivo não encontrado
  *
  */

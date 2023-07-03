@@ -9,6 +9,8 @@ GPROF_DIR = gprof
 BIN_DIR = ./bin
 REPORT = ./tmp/analise.out
 COMPACTED = ./compactado.wg
+DESCOMPACTED = ./descompactado.txt
+TABLE_AUX = ./tmp/tabela.bin
 
 # Nome do executável
 TARGET = $(BIN_DIR)/main
@@ -65,9 +67,11 @@ run: all
 
 # Limpeza dos arquivos objetos e do executável
 clean:
-	@$(RM) -r $(OBJ_DIR)/* $(BIN_DIR)/* $(COMPACTED) $(REPORT) coverage/* *.gcda *.gcno
+	@$(RM) -r $(OBJ_DIR)/* $(BIN_DIR)/* $(COMPACTED) $(DESCOMPACTED) $(TABLE_AUX) $(REPORT) coverage/* *.gcda *.gcno
 	@echo ""
-	@echo $(ANSI_RED) "----- Arquivos objetos e executáveis removidos! -----" $(ANSI_DEFAULT)
+	@echo -e -n $(ANSI_RED)
+	@echo -n "X "
+	@echo $(ANSI_RED) "Arquivos objetos e executáveis removidos!" $(ANSI_DEFAULT)
 	@echo ""
 
 .PHONY: clean

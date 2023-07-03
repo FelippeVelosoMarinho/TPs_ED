@@ -17,17 +17,7 @@
 int main(int argc, char *argv[])
 {
     Program p;
-    char *caminho;
-    bool descompactar = false;
-    bool compactar = false;
-
-    if (!p.processArguments(argc, argv, caminho, descompactar, compactar))
-    {
-        std::cerr << "Uso: " << argv[0] << " <caminho do arquivo> [-d] [-c]" << std::endl;
-        return 1;
-    }
-
-    p.printMenu(compactar, descompactar, caminho);
+    p.printMenu(argc, argv);
 
     return 0;
 }

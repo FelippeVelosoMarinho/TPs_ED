@@ -12,7 +12,6 @@
  */
 Decompress::Decompress()
 {
-
 }
 
 /**
@@ -21,11 +20,10 @@ Decompress::Decompress()
  */
 Decompress::~Decompress()
 {
-
 }
 
 /**
- * @brief Função para descomprimir o texto
+ * @brief Função para descodificar o texto
  *
  * @param texto
  * @param root
@@ -75,42 +73,64 @@ unsigned int Decompress::isBitOne(unsigned char byte, int pos)
 }
 
 /**
- * @brief Função para descompactar o arquivo
+ * @brief Função para descompactar o arquivo previamente compactado, recebe como parâmetro o caminho de uma arquivo txt vazio para ser preenchido com o texto descompactado
  *
- * @param root
+ * @return unsigned*
  */
-void Decompress::descompact(Node *root)
+unsigned char *Decompress::descompactar()
 {
     FILE *arq = fopen("compactado.wg", "rb"); // Arquivo binário
-    Node *aux = root;
     unsigned char byte;
     int i;
+    int bufferSize = 0;
+    unsigned char *auxChar = nullptr;
 
     if (arq)
     {
+        // Determinar o tamanho necessário para o buffer
         while (fread(&byte, sizeof(unsigned char), 1, arq))
         {
-            for (i = 7; i >= 0; i--)
-            {
-                if (isBitOne(byte, i))
-                {
-                    aux = aux->dir;
-                }
-                else
-                {
-                    aux = aux->esq;
-                }
-                if (aux->esq == NULL && aux->dir == NULL)
-                {
-                    std::cout << aux->caracter; // depois mudar para escrever no arquivo
-                    aux = root; // volta para a raiz
-                }
-            }
+            bufferSize += 8;
         }
         fclose(arq);
+
+        // Alocar o buffer com o tamanho necessário
+        auxChar = new unsigned char[bufferSize + 1];
+        auxChar[bufferSize] = '\0'; // Definir o caractere nulo de terminação
+
+        arq = fopen("compactado.wg", "rb"); // Reabrir o arquivo
+
+        if (arq)
+        {
+            int index = 0;
+
+            while (fread(&byte, sizeof(unsigned char), 1, arq))
+            {
+                for (i = 7; i >= 0; i--)
+                {
+                    if (isBitOne(byte, i))
+                    {
+                        auxChar[index] = '1';
+                    }
+                    else
+                    {
+                        auxChar[index] = '0';
+                    }
+                    index++;
+                }
+            }
+            fclose(arq);
+        }
+        else
+        {
+            delete[] auxChar; // Liberar a memória alocada em caso de erro
+            throw FileNotFoundException();
+        }
     }
     else
     {
         throw FileNotFoundException();
     }
+
+    return auxChar;
 }
