@@ -39,6 +39,7 @@ List::~List()
  */
 unsigned int List::getSize()
 {
+    LEMEMLOG(this->size, sizeof(unsigned int), 1);
     return this->size;
 }
 

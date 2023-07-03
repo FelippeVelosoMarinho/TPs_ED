@@ -13,7 +13,6 @@
 #include <ctime>
 #include <sys/resource.h>
 #include <fstream>
-#include "../include/memlog.hpp"
 #include "../include/compress.hpp"
 #include "../include/decompress.hpp"
 #include "../include/tmp.hpp"

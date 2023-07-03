@@ -11,7 +11,7 @@
 #include <iostream>
 #include <locale.h>
 
-// #include "huffmanTree.hpp"
+#include "memlog.hpp"
 #include "exceptions.hpp"
 
 using namespace std;

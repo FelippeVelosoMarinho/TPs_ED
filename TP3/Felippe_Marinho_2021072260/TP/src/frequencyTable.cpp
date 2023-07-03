@@ -35,6 +35,7 @@ void FrequencyTable::setTable(unsigned int *table)
 {
     for (int i = 0; i < MAX_SIZE; i++)
     {
+        ESCREVEMEMLOG(i, sizeof(unsigned int), 0);
         this->table[i] = table[i];
     }
 }
@@ -48,6 +49,7 @@ void FrequencyTable::setTableWithZero(unsigned int *table)
 {
     for (int i = 0; i < MAX_SIZE; i++)
     {
+        ESCREVEMEMLOG(i, sizeof(unsigned int), 0);
         this->table[i] = 0;
     }
 }
@@ -64,6 +66,7 @@ void FrequencyTable::fillTable(unsigned char *text)
 
     while (text[i] != '\0')
     {
+        ESCREVEMEMLOG(text[i], sizeof(unsigned int), 0);
         this->table[text[i]]++;
         i++;
     }
@@ -81,6 +84,7 @@ void FrequencyTable::printTable()
         if (this->table[i] != 0)
         {
             //std::cout << i << " - " << (char)i << " - " << this->table[i] << std::endl;
+            LEMEMLOG(i, sizeof(unsigned int), 0);
             printf("%d - %u - %d\n", i, (char)i, this->table[i]);
         }
     }

@@ -11,6 +11,7 @@ REPORT = ./tmp/analise.out
 COMPACTED = ./compactado.wg
 DESCOMPACTED = ./descompactado.txt
 TABLE_AUX = ./tmp/tabela.bin
+LOG = ./tmp/huffmanLog.out
 
 # Nome do executável
 TARGET = $(BIN_DIR)/main
@@ -67,7 +68,7 @@ run: all
 
 # Limpeza dos arquivos objetos e do executável
 clean:
-	@$(RM) -r $(OBJ_DIR)/* $(BIN_DIR)/* $(COMPACTED) $(DESCOMPACTED) $(TABLE_AUX) $(REPORT) coverage/* *.gcda *.gcno
+	@$(RM) -r $(OBJ_DIR)/* $(BIN_DIR)/* $(COMPACTED) $(DESCOMPACTED) $(LOG) $(TABLE_AUX) $(REPORT) coverage/* *.gcda *.gcno
 	@echo ""
 	@echo -e -n $(ANSI_RED)
 	@echo -n "X "

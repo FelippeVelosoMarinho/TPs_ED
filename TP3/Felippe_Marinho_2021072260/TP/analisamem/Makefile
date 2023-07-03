@@ -28,7 +28,7 @@ all: test use
 use: $(EXE)
 	if test -d ../tmp/out; then rm -rf ../tmp/out; fi
 	mkdir ../tmp/out
-	$(EXE) -i ../tmp/convexHullLog.out -p ../tmp/out/convexHullLog
+	$(EXE) -i ../tmp/huffmanLog.out -p ../tmp/out/huffmanLog
 	gnuplot ../tmp/out/*.gp
 	ls ../tmp/out/
 
