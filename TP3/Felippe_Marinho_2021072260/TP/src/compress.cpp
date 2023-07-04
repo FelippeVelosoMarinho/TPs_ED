@@ -79,10 +79,12 @@ char *Compress::compress(char **dictionary, unsigned char *string)
  * @brief Função para compactar o arquivo
  *
  * @param caminho
+ * @param caminho2
  */
-void Compress::compact(unsigned char *caminho)
+void Compress::compact(unsigned char *caminho, char *caminho2)
 {
-    FILE *arq = fopen("compactado.wg", "wb"); // Arquivo binário
+    //FILE *arq = fopen("compactado.wg", "wb"); // Arquivo binário
+    FILE *arq = fopen(caminho2, "wb"); // Arquivo binário
     int i = 0, j = 7;
     unsigned char mask, byte = 0; // 00000000
     if (arq)

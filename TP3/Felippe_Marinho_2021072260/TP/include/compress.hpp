@@ -17,7 +17,7 @@ public:
     ~Compress();
     int stringSize(char **dictionary, unsigned char *string);
     char* compress(char **dictionary, unsigned char *string); 
-    void compact(unsigned char *caminho);
+    void compact(unsigned char *caminho, char *caminho2);
 };
 
 #endif

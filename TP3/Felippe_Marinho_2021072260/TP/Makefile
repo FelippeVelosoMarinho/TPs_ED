@@ -46,13 +46,13 @@ $(TARGET): $(OBJECTS)
 	@echo $(ANSI_GREEN) "Concluído!" $(ANSI_DEFAULT)
 	@echo ""
 	@echo $(ANSI_GREEN) "Para executar o programa e compactar, digite:" $(ANSI_DEFAULT)
-	@echo $(ANSI_YELLOW) "----- ./bin/main 'TEXTO.txt' 'INFO_ARQUIVO.txt' -c -----" $(ANSI_DEFAULT)
+	@echo $(ANSI_YELLOW) "----- ./bin/main 'TEXTO.txt' 'INFO_ARQUIVO.wg' -c -----" $(ANSI_DEFAULT)
 	@echo ""
 
 # Regra para compilar e executar o programa, coloque o caminho até o arquivo de entrada 
 # entre aspas após o comando. Exemplo: $(TARGET) "c:/Users/usuario/Desktop/entradas/text.txt" "c:/Users/usuario/Desktop/entradas/INFO_ARQUIVO.txt" -c
 run: all
-	@$(TARGET) 'TEXTO.txt' 'INFO_ARQUIVO.txt' -c
+	@$(TARGET) 'TEXTO.txt' 'INFO_ARQUIVO.wg' -c
 	@$(GPROF_DIR) $(TARGET) gmon.out > $(REPORT)
 	@echo ""
 	@echo -e -n $(ANSI_GREEN)

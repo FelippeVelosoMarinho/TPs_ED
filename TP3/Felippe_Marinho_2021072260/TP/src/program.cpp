@@ -145,7 +145,7 @@ void Program::salvarArquivoDescompactado(unsigned char *texto, char *caminho2)
         i++;
     }
 
-    std::cout << GREEN << "√ Arquivo descompactado criado 'descompactado.txt'" << RESET << std::endl;
+    std::cout << GREEN << "√ Arquivo descompactado em '"<< caminho2 << "'" << RESET << std::endl;
     fclose(arq);
 }
 
@@ -291,23 +291,24 @@ int Program::printMenu(int argc, char *argv[])
         cod = comp->compress(dictionary, texto);
         /*std::cout << "Texto original: " << texto << std::endl;
         std::cout << "Texto codificado: " << cod << std::endl;*/
-        comp->compact((unsigned char *)cod);
-        std::cout << GREEN << "√ Arquivo compactado gerado em './compactado.wg'" << RESET << std::endl;
+        comp->compact((unsigned char *)cod, caminho2);
+        std::cout << GREEN << "√ Arquivo compactado gerado em '" << caminho2 << "'" << RESET << std::endl;
 
         beforeSize = this->sizeFileBytes(caminho);          // Tamanho do arquivo original
-        afterSize = this->sizeFileBytes("./compactado.wg"); // Tamanho do arquivo compactado
+        //afterSize = this->sizeFileBytes("./compactado.wg"); // Tamanho do arquivo compactado
+        afterSize = this->sizeFileBytes(caminho2); // Tamanho do arquivo compactado
         std::cout << CYAN << "\n --- Informações da compactação ---" << RESET << std::endl;
         std::cout << MAGENTA << "De " << beforeSize << " bytes para " << afterSize << " bytes..." << RESET << std::endl;
         std::cout << MAGENTA << "Fator de compressão: " << (float)beforeSize / afterSize << RESET << std::endl;
         std::cout << MAGENTA << "Taxa de compressão: " << (float)afterSize / beforeSize * 100 << "%\n" << RESET << std::endl;
 
         // criar um array de char com as informações da compactação
-        std::string informacoes = "Tamanho do arquivo original: " + std::to_string(beforeSize) + " bytes\n";
+        /*std::string informacoes = "Tamanho do arquivo original: " + std::to_string(beforeSize) + " bytes\n";
         informacoes += "Tamanho do arquivo compactado: " + std::to_string(afterSize) + " bytes\n";
         informacoes += "Fator de compressão: " + std::to_string((float)beforeSize / afterSize) + "\n";
         informacoes += "Taxa de compressão: " + std::to_string((float)afterSize / beforeSize * 100) + "%\n";
 
-        this->salvarInformacoes(informacoes.c_str(), caminho2); // Salva as informações da compactação em um txt
+        this->salvarInformacoes(informacoes.c_str(), caminho2); // Salva as informações da compactação em um txt*/
 
         std::cout << GREEN << "\nPara descompactar agora, digite: " << RESET << std::endl;
         std::cout << YELLOW << " ----- ./bin/main 'COMPACTADO.wg' 'DESCOMPACTADO.txt' -d ----- " << RESET << std::endl;
