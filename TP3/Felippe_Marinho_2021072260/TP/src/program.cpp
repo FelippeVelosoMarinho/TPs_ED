@@ -75,17 +75,19 @@ unsigned char *Program::readFile(char *caminho)
  * @param argc
  * @param argv
  * @param caminho
+ * @param caminho2
  * @param descompactar
  * @param compactar
  * @return bool
  */
-bool Program::processArguments(int argc, char *argv[], char *&caminho, bool &descompactar, bool &compactar)
+bool Program::processArguments(int argc, char *argv[], char *&caminho, char *&caminho2, bool &descompactar, bool &compactar)
 {
-    if (argc > 1)
+    if (argc > 3)
     {
         caminho = argv[1];
+        caminho2 = argv[2];
 
-        for (int i = 2; i < argc; i++)
+        for (int i = 3; i < argc; i++)
         {
             if (strcmp(argv[i], "-d") == 0)
             {
@@ -126,35 +128,15 @@ int Program::sizeFileBytes(char *caminho)
 }
 
 /**
- * @brief Função auxiliar que salva um arquivo contendo o texto original em um arquivo txt
+ * @brief Função que salva um arquivo contendo o texto descompactado em um arquivo txt
  *
  * @param caminho
  * @param texto
  */
-void Program::salvarArquivo(unsigned char *texto)
+void Program::salvarArquivoDescompactado(unsigned char *texto, char *caminho2)
 {
-    FILE *arq = fopen("./tmp/aux.txt", "w"); // Arquivo txt
-    int i = 0;
-
-    while (texto[i] != '\0')
-    {
-        fputc(texto[i], arq);
-        i++;
-    }
-
-    std::cout << GREEN << "√ Arquivo auxiliar criado em './tmp/aux.txt'" << RESET << std::endl;
-    fclose(arq);
-}
-
-/**
- * @brief Função auxiliar que salva um arquivo contendo o texto descompactado em um arquivo txt
- *
- * @param caminho
- * @param texto
- */
-void Program::salvarArquivoDescompactado(unsigned char *texto)
-{
-    FILE *arq = fopen("descompactado.txt", "w"); // Arquivo txt
+    // FILE *arq = fopen("descompactado.txt", "w"); // Arquivo txt
+    FILE *arq = fopen(caminho2, "w"); // Arquivo txt
     int i = 0;
 
     while (texto[i] != '\0')
@@ -165,6 +147,29 @@ void Program::salvarArquivoDescompactado(unsigned char *texto)
 
     std::cout << GREEN << "√ Arquivo descompactado criado 'descompactado.txt'" << RESET << std::endl;
     fclose(arq);
+}
+
+/**
+ * @brief Função que salva as informações da compactação em um arquivo txt
+ *
+ * @param informacoes
+ * @param caminho
+ */
+void Program::salvarInformacoes(const char *informacoes, char *caminho)
+{
+    FILE *arq = fopen(caminho, "w"); // Arquivo txt
+
+    if (arq)
+    {
+        fprintf(arq, "%s", informacoes); // Escreve as informações no arquivo
+        fclose(arq);
+        std::cout << GREEN << "√ Informações da compactação salvas em '" << caminho << "'" << RESET << std::endl;
+    }
+    else
+    {
+        std::cout << RED << "X Erro ao salvar as informações da compactação" << RESET << std::endl;
+        throw FileErrorException();
+    }
 }
 
 /**
@@ -190,7 +195,7 @@ void Program::salvarTabelaFrequencia(const int *tabela)
 }
 
 /**
- * @brief Função auxiliar para carregar a tabela de frequência de um arquivo binário
+ * @brief Função para carregar a tabela de frequência de um arquivo binário
  *
  * @return int* - Ponteiro para a tabela de frequência
  */
@@ -221,14 +226,15 @@ int *Program::carregarTabelaFrequencia()
 int Program::printMenu(int argc, char *argv[])
 {
     char *caminho;
+    char *caminho2;
     bool descompactar = false;
     bool compactar = false;
 
     struct rusage start, end; // Structs para medir o tempo de execução
 
-    if (!this->processArguments(argc, argv, caminho, descompactar, compactar))
+    if (!this->processArguments(argc, argv, caminho, caminho2, descompactar, compactar))
     {
-        std::cerr << "Uso: " << argv[0] << " <caminho do arquivo> [-d] [-c]" << std::endl;
+        std::cerr << "Uso: " << argv[0] << " <caminho do arquivo 1> <caminho do arquivo 2> [-c] [-d]" << std::endl;
         return 1;
     }
 
@@ -286,19 +292,31 @@ int Program::printMenu(int argc, char *argv[])
         /*std::cout << "Texto original: " << texto << std::endl;
         std::cout << "Texto codificado: " << cod << std::endl;*/
         comp->compact((unsigned char *)cod);
-        std::cout << GREEN << "√ Arquivo compactado!" << RESET << std::endl;
+        std::cout << GREEN << "√ Arquivo compactado gerado em './compactado.wg'" << RESET << std::endl;
 
         beforeSize = this->sizeFileBytes(caminho);          // Tamanho do arquivo original
         afterSize = this->sizeFileBytes("./compactado.wg"); // Tamanho do arquivo compactado
-        std::cout << MAGENTA << "\nDe " << beforeSize << " bytes para " << afterSize << " bytes..." << RESET << std::endl;
-        std::cout << CYAN << " --- Fator de compressão: " << (float)beforeSize / afterSize << " ---" << RESET << std::endl;
-        std::cout << CYAN << " --- Taxa de compressão: " << (float)afterSize / beforeSize * 100 << "% ---" << RESET << std::endl;
+        std::cout << CYAN << "\n --- Informações da compactação ---" << RESET << std::endl;
+        std::cout << MAGENTA << "De " << beforeSize << " bytes para " << afterSize << " bytes..." << RESET << std::endl;
+        std::cout << MAGENTA << "Fator de compressão: " << (float)beforeSize / afterSize << RESET << std::endl;
+        std::cout << MAGENTA << "Taxa de compressão: " << (float)afterSize / beforeSize * 100 << "%\n" << RESET << std::endl;
+
+        // criar um array de char com as informações da compactação
+        std::string informacoes = "Tamanho do arquivo original: " + std::to_string(beforeSize) + " bytes\n";
+        informacoes += "Tamanho do arquivo compactado: " + std::to_string(afterSize) + " bytes\n";
+        informacoes += "Fator de compressão: " + std::to_string((float)beforeSize / afterSize) + "\n";
+        informacoes += "Taxa de compressão: " + std::to_string((float)afterSize / beforeSize * 100) + "%\n";
+
+        this->salvarInformacoes(informacoes.c_str(), caminho2); // Salva as informações da compactação em um txt
+
+        std::cout << GREEN << "\nPara descompactar agora, digite: " << RESET << std::endl;
+        std::cout << YELLOW << " ----- ./bin/main 'COMPACTADO.wg' 'DESCOMPACTADO.txt' -d ----- " << RESET << std::endl;
     }
 
     // Descompactar o texto
     if (descompactar)
     {
-        unsigned char *textoDescompactado = decomp->descompactar();
+        unsigned char *textoDescompactado = decomp->descompactar(caminho);
 
         int *tabela = carregarTabelaFrequencia(); // Carrega a tabela de frequência do arquivo auxiliar
 
@@ -317,7 +335,7 @@ int Program::printMenu(int argc, char *argv[])
         decod = decomp->decompress(textoDescompactado, raiz);
         // std::cout << "Texto decodificado: " << decod << std::endl;
 
-        this->salvarArquivoDescompactado((unsigned char *)decod); // Salva o arquivo descompactado em um txt
+        this->salvarArquivoDescompactado((unsigned char *)decod, caminho2); // Salva o arquivo descompactado em um txt
     }
 
     // Libera a memória alocada

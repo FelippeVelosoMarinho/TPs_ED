@@ -1,0 +1,4 @@
+Tamanho do arquivo original: 4055830 bytes
+Tamanho do arquivo compactado: 2332228 bytes
+Fator de compressão: 1.739037
+Taxa de compressão: 57.503098%

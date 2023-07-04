@@ -29,11 +29,11 @@ class Program
 {
 public:
     int sizeFile(char *caminho); // Função para calcular quantos caracteres tem o arquivo
-    unsigned char *readFile(char *caminho);
-    bool processArguments(int argc, char *argv[], char*& caminho, bool& descompactar, bool& compactar);
+    unsigned char *readFile(char *caminho); // Função para ler o arquivo
+    bool processArguments(int argc, char *argv[], char*& caminho, char*& caminho2, bool& descompactar, bool& compactar); // Função para processar os argumentos
     int sizeFileBytes(char *caminho); // Função para calcular quantos bytes tem o arquivo
-    void salvarArquivo(unsigned char *texto); // Função auxiliar que salva um arquivo contendo o texto original em um arquivo txt
-    void salvarArquivoDescompactado(unsigned char *texto); 
+    void salvarArquivoDescompactado(unsigned char *texto, char *caminho); // Função para salvar o arquivo descompactado
+    void salvarInformacoes(const char *informacoes, char *caminho2); // Função para salvar as informações da compactação
     void salvarTabelaFrequencia(const int* tabela);
     int* carregarTabelaFrequencia();
     int printMenu(int argc, char *argv[]);

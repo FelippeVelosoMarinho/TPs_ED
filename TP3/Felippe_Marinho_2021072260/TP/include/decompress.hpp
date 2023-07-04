@@ -19,7 +19,7 @@ public:
     ~Decompress();
     char* decompress(unsigned char *texto, Node *root); // Função para descodificar o texto
     unsigned int isBitOne(unsigned char byte, int pos);
-    unsigned char* descompactar();
+    unsigned char* descompactar(char *caminho);
 };
 
 #endif

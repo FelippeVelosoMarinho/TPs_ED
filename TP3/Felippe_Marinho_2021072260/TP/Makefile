@@ -45,20 +45,14 @@ $(TARGET): $(OBJECTS)
 	@echo -n " √ "
 	@echo $(ANSI_GREEN) "Concluído!" $(ANSI_DEFAULT)
 	@echo ""
-	@echo $(ANSI_GREEN) "Para executar o programa diretamente, digite:" $(ANSI_DEFAULT)
-	@echo $(ANSI_YELLOW) "----- ./bin/main 'ENTRADA.txt' -----" $(ANSI_DEFAULT)
-	@echo ""
 	@echo $(ANSI_GREEN) "Para executar o programa e compactar, digite:" $(ANSI_DEFAULT)
-	@echo $(ANSI_YELLOW) "----- ./bin/main 'ENTRADA.txt' -c -----" $(ANSI_DEFAULT)
-	@echo ""
-	@echo $(ANSI_GREEN) "Para executar o programa e descompactar, digite:" $(ANSI_DEFAULT)
-	@echo $(ANSI_YELLOW) "----- ./bin/main 'ENTRADA.txt' -d -----" $(ANSI_DEFAULT)
+	@echo $(ANSI_YELLOW) "----- ./bin/main 'TEXTO.txt' 'INFO_ARQUIVO.txt' -c -----" $(ANSI_DEFAULT)
 	@echo ""
 
 # Regra para compilar e executar o programa, coloque o caminho até o arquivo de entrada 
-# entre aspas após o comando. Exemplo: $(TARGET) "c:/Users/usuario/Desktop/entradas/entdouble.s1.n5.i.in"
+# entre aspas após o comando. Exemplo: $(TARGET) "c:/Users/usuario/Desktop/entradas/text.txt" "c:/Users/usuario/Desktop/entradas/INFO_ARQUIVO.txt" -c
 run: all
-	@$(TARGET) "./test/teste.txt" 
+	@$(TARGET) 'TEXTO.txt' 'INFO_ARQUIVO.txt' -c
 	@$(GPROF_DIR) $(TARGET) gmon.out > $(REPORT)
 	@echo ""
 	@echo -e -n $(ANSI_GREEN)

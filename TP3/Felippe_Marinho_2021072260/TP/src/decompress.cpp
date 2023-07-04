@@ -77,9 +77,10 @@ unsigned int Decompress::isBitOne(unsigned char byte, int pos)
  *
  * @return unsigned*
  */
-unsigned char *Decompress::descompactar()
+unsigned char *Decompress::descompactar(char *caminho)
 {
-    FILE *arq = fopen("compactado.wg", "rb"); // Arquivo binário
+    //FILE *arq = fopen("compactado.wg", "rb"); // Arquivo binário
+    FILE *arq = fopen(caminho, "rb"); // Arquivo binário
     unsigned char byte;
     int i;
     int bufferSize = 0;
@@ -98,7 +99,8 @@ unsigned char *Decompress::descompactar()
         auxChar = new unsigned char[bufferSize + 1];
         auxChar[bufferSize] = '\0'; // Definir o caractere nulo de terminação
 
-        arq = fopen("compactado.wg", "rb"); // Reabrir o arquivo
+        //arq = fopen("compactado.wg", "rb"); // Reabrir o arquivo
+        arq = fopen(caminho, "rb"); // Reabrir o arquivo
 
         if (arq)
         {
