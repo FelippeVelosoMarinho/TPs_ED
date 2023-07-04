@@ -57,6 +57,24 @@ char **Dictionary::allocDictionary(int columns)
 }
 
 /**
+ * @brief Função para desalocar o dicionário
+ *
+ * @param dictionary
+ * @param columns
+ */
+void Dictionary::freeDictionary(char **dictionary, int columns)
+{
+    for (int i = 0; i < MAX_SIZE; i++)
+    {
+        if (dictionary[i] != NULL)
+        {
+            free(dictionary[i]);
+        }
+    }
+    free(dictionary);
+}
+
+/**
  * @brief Função para criar o dicionário
  *
  * @param raiz

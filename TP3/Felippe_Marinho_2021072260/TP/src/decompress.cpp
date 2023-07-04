@@ -55,7 +55,7 @@ char *Decompress::decompress(unsigned char *texto, Node *root)
         }
         i++;
     }
-
+    
     return decompress;
 }
 

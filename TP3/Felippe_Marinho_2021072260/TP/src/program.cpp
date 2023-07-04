@@ -45,7 +45,7 @@ unsigned char *Program::readFile(char *caminho)
 {
     FILE *arq;
     unsigned char *texto;
-    int i = 0;
+    int tamanho = this->sizeFile(caminho);
 
     arq = fopen(caminho, "r");
 
@@ -54,11 +54,20 @@ unsigned char *Program::readFile(char *caminho)
         throw FileNotFoundException();
     }
 
-    texto = (unsigned char *)malloc(sizeof(char) * this->sizeFile(caminho));
+    texto = (unsigned char *)malloc(tamanho + 1); // +1 para o caractere nulo
 
-    while (!feof(arq))
+    if (texto == NULL)
     {
-        texto[i] = fgetc(arq);
+        fclose(arq);
+        throw MemoryAllocationException();
+    }
+
+    int i = 0;
+    int c;
+
+    while ((c = fgetc(arq)) != EOF)
+    {
+        texto[i] = (unsigned char)c;
         i++;
     }
 
@@ -145,7 +154,7 @@ void Program::salvarArquivoDescompactado(unsigned char *texto, char *caminho2)
         i++;
     }
 
-    std::cout << GREEN << "√ Arquivo descompactado em '"<< caminho2 << "'" << RESET << std::endl;
+    std::cout << GREEN << "√ Arquivo descompactado em '" << caminho2 << "'" << RESET << std::endl;
     fclose(arq);
 }
 
@@ -183,7 +192,7 @@ void Program::salvarTabelaFrequencia(const int *tabela)
 
     if (arq)
     {
-        fwrite(tabela, sizeof(int), 256, arq); // Escreve a tabela de frequência no arquivo
+        fwrite(tabela, sizeof(int), MAX_SIZE, arq); // Escreve a tabela de frequência no arquivo
         fclose(arq);
         std::cout << GREEN << "√ Tabela de frequência salva em './tmp/tabela.bin'" << RESET << std::endl;
     }
@@ -237,6 +246,16 @@ int Program::printMenu(int argc, char *argv[])
         std::cerr << "Uso: " << argv[0] << " <caminho do arquivo 1> <caminho do arquivo 2> [-c] [-d]" << std::endl;
         return 1;
     }
+    // Chame uma função para gerar os gráficos usando a memlog aqui
+    std::cout << GREEN << "√ Log gerado em './tmp/huffmanLog.out'" << RESET << std::endl;
+    char *lognome = "./tmp/huffmanLog.out";
+    iniciaMemLog(lognome);
+    ativaMemLog();
+
+    // Define a fase 0 do memlog
+    defineFaseMemLog(0);
+    // Inicializa o contador de pontos
+    getrusage(RUSAGE_SELF, &start);
 
     Tmp t;
     FrequencyTable *tab = new FrequencyTable();
@@ -253,17 +272,6 @@ int Program::printMenu(int argc, char *argv[])
 
     std::cout << YELLOW << "Carregando arquivo..." << RESET << std::endl;
     unsigned char *texto = (unsigned char *)this->readFile(caminho); // Lê o arquivo
-
-    // Chame uma função para gerar os gráficos usando a memlog aqui
-    std::cout << GREEN << "√ Log gerado em './tmp/huffmanLog.out'" << RESET << std::endl;
-    char *lognome = "./tmp/huffmanLog.out";
-    iniciaMemLog(lognome);
-    ativaMemLog();
-
-    // Define a fase 0 do memlog
-    defineFaseMemLog(0);
-    // Inicializa o contador de pontos
-    getrusage(RUSAGE_SELF, &start);
 
     // Compactar o texto
     if (compactar)
@@ -294,13 +302,14 @@ int Program::printMenu(int argc, char *argv[])
         comp->compact((unsigned char *)cod, caminho2);
         std::cout << GREEN << "√ Arquivo compactado gerado em '" << caminho2 << "'" << RESET << std::endl;
 
-        beforeSize = this->sizeFileBytes(caminho);          // Tamanho do arquivo original
-        //afterSize = this->sizeFileBytes("./compactado.wg"); // Tamanho do arquivo compactado
+        beforeSize = this->sizeFileBytes(caminho); // Tamanho do arquivo original
+        // afterSize = this->sizeFileBytes("./compactado.wg"); // Tamanho do arquivo compactado
         afterSize = this->sizeFileBytes(caminho2); // Tamanho do arquivo compactado
         std::cout << CYAN << "\n --- Informações da compactação ---" << RESET << std::endl;
         std::cout << MAGENTA << "De " << beforeSize << " bytes para " << afterSize << " bytes..." << RESET << std::endl;
         std::cout << MAGENTA << "Fator de compressão: " << (float)beforeSize / afterSize << RESET << std::endl;
-        std::cout << MAGENTA << "Taxa de compressão: " << (float)afterSize / beforeSize * 100 << "%\n" << RESET << std::endl;
+        std::cout << MAGENTA << "Taxa de compressão: " << (float)afterSize / beforeSize * 100 << "%\n"
+                  << RESET << std::endl;
 
         // criar um array de char com as informações da compactação
         /*std::string informacoes = "Tamanho do arquivo original: " + std::to_string(beforeSize) + " bytes\n";
@@ -312,6 +321,17 @@ int Program::printMenu(int argc, char *argv[])
 
         std::cout << GREEN << "\nPara descompactar agora, digite: " << RESET << std::endl;
         std::cout << YELLOW << " ----- ./bin/main 'COMPACTADO.wg' 'DESCOMPACTADO.txt' -d ----- " << RESET << std::endl;
+
+        free(texto);
+        dic->freeDictionary(dictionary, columns);
+        // Libera a memória alocada
+        delete texto;
+        delete tab;
+        delete lista;
+        delete tree;
+        delete dic;
+        delete comp;
+        delete decomp;
     }
 
     // Descompactar o texto
@@ -337,15 +357,19 @@ int Program::printMenu(int argc, char *argv[])
         // std::cout << "Texto decodificado: " << decod << std::endl;
 
         this->salvarArquivoDescompactado((unsigned char *)decod, caminho2); // Salva o arquivo descompactado em um txt
-    }
 
-    // Libera a memória alocada
-    delete tab;
-    delete lista;
-    delete tree;
-    delete dic;
-    delete comp;
-    delete decomp;
+        free(textoDescompactado);
+        free(tabela);
+        dic->freeDictionary(dictionary, columns);
+        // Libera a memória alocada
+        delete texto;
+        delete tab;
+        delete lista;
+        delete tree;
+        delete dic;
+        delete comp;
+        delete decomp;
+    }
 
     getrusage(RUSAGE_SELF, &end);
     std::cout << YELLOW << "\nTempo de usuário: " << t.diffUserTime(&start, &end) << "s" << RESET << std::endl;

@@ -10,6 +10,20 @@
 #include <exception>
 
 /**
+ * @brief Classe de exceção para erro na alocação de memória
+ * 
+ */
+class MemoryAllocationException : public std::exception
+{
+public:
+    MemoryAllocationException() {}
+    const char *what() const throw()
+    {
+        return "Erro na alocação de memória!";
+    }
+};
+
+/**
  * @brief Classe de exceção para erro na escrita ou leitura do arquivo
  * 
  */

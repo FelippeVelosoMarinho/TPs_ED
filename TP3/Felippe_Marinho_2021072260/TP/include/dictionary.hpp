@@ -18,6 +18,7 @@ public:
     Dictionary();
     ~Dictionary();
     char **allocDictionary(int columns);
+    void freeDictionary(char **dictionary, int columns);
     void createDictionary(char**dictionary, Node *raiz, char *code, int size);
     void printDictionary(char **dictionary);
 };
